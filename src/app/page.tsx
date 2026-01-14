@@ -1,65 +1,90 @@
-import Image from "next/image";
+"use client";
+
+import { HeroSection } from "@/components/sections/HeroSection";
+import { WhoWeAre } from "@/components/sections/WhoWeAre";
+import { ServiceCard } from "@/components/sections/ServiceCard";
+import { FeaturesGrid } from "@/components/sections/FeaturesGrid";
+import { TestimonialCard } from "@/components/sections/TestimonialCard";
+import { CTASection } from "@/components/sections/CTASection";
+import { SectionWrapper } from "@/components/ui/SectionWrapper";
+import { Layout, Bot, ShoppingCart } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <HeroSection
+        title=""
+        subtitle=""
+      />
+
+      <WhoWeAre />
+
+      <SectionWrapper id="services" className="bg-white">
+        <div className="text-center mb-16">
+          <span className="block text-primary md:text-5xl font-bold text-dark leading-tight">Our Core Pillars</span>
+          <div className="w-20 h-1 bg-primary/50 mx-auto" />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-screen-2xl mx-auto">
+          <ServiceCard
+            title="Web Development & AI Automation"
+            icon={<Layout size={24} />}
+            bgIcon={Layout}
+            href="/web-development-services"
+            items={[
+              "High-performance Full-stack Applications",
+              "Custom AI Model Integration (LLMs)",
+              "Business Process Workflow Automation",
+            ]}
+          />
+          <ServiceCard
+            title="Ecommerce Services"
+            icon={<ShoppingCart size={24} />}
+            bgIcon={ShoppingCart}
+            href="/ecommerce-services"
+            items={[
+              "Headless Commerce Solutions",
+              "Conversion Rate Optimization (CRO)",
+              "Enterprise Marketplace Scaling",
+            ]}
+          />
         </div>
-      </main>
-    </div>
+      </SectionWrapper>
+
+      <FeaturesGrid />
+
+      <SectionWrapper id="testimonials" className="bg-white pb-0">
+        <div className="text-center mb-16 space-y-4">
+          <h2 className="text-4xl font-bold text-dark">What Our Clients Say</h2>
+          <div className="flex justify-center space-x-1">
+            {[...Array(5)].map((_, i) => (
+              <span key={i} className="text-primary text-xl">★</span>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <TestimonialCard
+            quote="Moolstone delivered a seamless and visually stunning website with precision and creativity. Their AI integrations changed our workflow."
+            author="Sarah J."
+            role="CEO, TechFlow"
+          />
+          <TestimonialCard
+            quote="Working with Moolstone was smooth from start to finish. They understood our needs and delivered a solution that exceeded our goals."
+            author="Alex M."
+            role="Founder, EcomGate"
+          />
+          <TestimonialCard
+            quote="Professionalism and timely delivery stood out. Their team felt more like partners than contractors during peak scaling periods."
+            author="M. Ross"
+            role="Ops Manager, LogistiX"
+          />
+        </div>
+      </SectionWrapper>
+
+      <SectionWrapper className="pt-0 pb-24">
+        <CTASection />
+      </SectionWrapper>
+    </>
   );
 }
