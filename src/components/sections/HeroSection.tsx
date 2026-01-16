@@ -17,7 +17,7 @@ export const HeroSection = ({
   secondaryCtaText = "View Our Work",
 }: HeroSectionProps) => {
   return (
-    <div className="relative min-h-[70dvh] sm:min-h-[70vh] md:min-h-[85vh] flex items-center justify-center overflow-hidden bg-black w-full max-w-full rounded-[50px]">
+    <div className="relative min-h-[70dvh] sm:min-h-[70vh] md:min-h-[85vh] flex items-center justify-center overflow-hidden bg-black w-full max-w-full">
       {/* Mobile Video */}
       <video
         autoPlay

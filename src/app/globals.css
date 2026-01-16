@@ -1,17 +1,67 @@
 @import "tailwindcss";
 
-@theme {
-  --color-primary: #f27b21;
-  /* Orange from CTA/Buttons */
-  --color-primary-dark: #d96611;
-  --color-secondary: #2563eb;
-  /* Blue for "Root Values" */
-  --color-bg-soft: #ffffff;
-  --color-text-main: #111827;
-  --color-text-muted: #4b5563;
-  --color-dark: #12110c;
-  /* Very dark/black for footer and text */
+/* ============================================
+   THEME CONFIGURATION - CHANGE COLORS HERE
+   ============================================
+   
+   To change the entire website theme, simply update the color values below.
+   All components use these CSS variables, so changing them here updates everything.
+   
+   POPULAR THEME PRESETS:
+   
+   1. LIGHT TEAL/GREEN (Current):
+      --color-primary: #14b8a6;
+      --color-primary-dark: #0d9488;
+   
+   2. ORANGE (Original):
+      --color-primary: #f27b21;
+      --color-primary-dark: #d96611;
+   
+   3. BLUE:
+      --color-primary: #3b82f6;
+      --color-primary-dark: #2563eb;
+   
+   4. PURPLE:
+      --color-primary: #a855f7;
+      --color-primary-dark: #9333ea;
+   
+   5. RED:
+      --color-primary: #ef4444;
+      --color-primary-dark: #dc2626;
+   
+   6. GREEN:
+      --color-primary: #22c55e;
+      --color-primary-dark: #16a34a;
+   
+   7. PINK:
+      --color-primary: #ec4899;
+      --color-primary-dark: #db2777;
+*/
 
+@theme {
+  /* PRIMARY COLORS - Main brand color used for buttons, links, accents */
+  --color-primary: #f27b21;
+  /* Orange */
+  --color-primary-dark: #d96611;
+  /* Darker Orange for hover states */
+
+  /* SECONDARY COLORS */
+  --color-secondary: #2563eb;
+  /* Blue for accents */
+
+  /* BACKGROUND COLORS */
+  --color-bg-soft: #ffffff;
+  /* Soft background */
+
+  /* TEXT COLORS */
+  --color-text-main: #111827;
+  /* Main text color (dark gray/black) */
+  --color-text-muted: #4b5563;
+  /* Muted text for descriptions */
+  --color-dark: #12110c;
+  /* Very dark for headings and footer */
+
+  /* BORDER RADIUS */
   --radius-md: 0.75rem;
   --radius-lg: 1.5rem;
 }
@@ -20,6 +70,7 @@
   --background: #ffffff;
   --foreground: #111827;
   --primary: #f27b21;
+  /* Must match --color-primary above */
 }
 
 body {
