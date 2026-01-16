@@ -48,3 +48,10 @@ body {
 .rounded-section {
   border-radius: var(--radius-lg);
 }
+
+/* Force select dropdowns to open downward */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
