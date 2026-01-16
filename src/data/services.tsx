@@ -26,7 +26,7 @@ export const serviceData: Record<string, {
 }> = {
     "amazon-seller-services": {
         title: "Amazon Seller Services",
-        description: "Scale your Amazon business from \"Just Listed\" to Best-Seller with Moolstone’s data-driven management services, designed to unlock up to 6x sales growth in your first year. We solve the critical bottlenecks that keep stores stuck—eliminating low visibility on page 5, reducing wasted ad spend, and navigating complex FBA logistics and compliance risks. Our \"Algorithm-First\" approach leverages elite SEO, AI-optimized A+ content, and aggressive PPC strategies to lower your ACoS while maximizing ROI. By combining predictive analytics with a 5-star brand protection and review strategy, we provide a secure, bulletproof roadmap for your brand’s expansion.",
+        description: "Scale your Amazon business from 'Just Listed' to Best-Seller with Moolstone’s data-driven management services, designed to unlock up to 6x sales growth. We eliminate low visibility, reduce wasted ad spend, and navigate complex FBA logistics. Our 'Algorithm-First' approach leverages elite SEO, AI-optimized A+ content, and aggressive PPC strategies to maximize ROI and provide a secure roadmap for your brand’s expansion.",
         features: [
             {
                 title: "Training Services for Amazon",
@@ -69,7 +69,7 @@ export const serviceData: Record<string, {
     },
     "flipkart-seller-services": {
         title: "Flipkart Seller Services",
-        description: "Unlock the full potential of India’s homegrown e-commerce giant with Moolstone’s expert Flipkart Seller Services. We provide a comprehensive growth strategy to navigate Flipkart’s dynamic ecosystem, from effortless onboarding to achieving the coveted ‘Flipkart Assured’ badge. Our team optimizes your catalog, fine-tunes your inventory management for Smart Fulfillment, and executes high-ROI ad campaigns to skyrocket your visibility. Whether you are a new seller or an established brand, our data-driven approach ensures you dominate your category, reduce operational breaches, and maximize profitability on Big Billion Days and beyond.",
+        description: "Unlock the full potential of India’s homegrown e-commerce giant with expert Flipkart strategies. From acquiring the 'Flipkart Assured' badge to executing high-ROI ad campaigns, we optimize every step of your journey. Ensure dominance in your category with our data-driven approach to inventory and visibility.",
         features: [
             {
                 title: "Flipkart Assured Badge Eligibility",
@@ -112,7 +112,7 @@ export const serviceData: Record<string, {
     },
     "alibaba-seller-services": {
         title: "Alibaba Seller Services",
-        description: "Connect with B2B buyers globally and dominate the export market with our Alibaba Seller Services. Our experts assist in setting up Gold Supplier accounts, designing world-class minisites, and optimizing your product rankings for international trade. We guide you through the complexities of cross-border commerce, ensuring your business stands out to serious buyers. From navigating Trade Assurance for safe payments to managing global RFQs, we provide the tools and strategy you need to transform your local manufacturing business into a global export powerhouse.",
+        description: "Dominate the global export market by connecting with B2B buyers worldwide. We assist in setting up Gold Supplier accounts, optimizing minisites, and navigating complex cross-border trade assurance. Transform your local manufacturing into a global export powerhouse with our end-to-end guidance.",
         features: [
             {
                 title: "Gold Supplier Setup",
@@ -155,7 +155,7 @@ export const serviceData: Record<string, {
     },
     "tata-cliq-seller-services": {
         title: "Tata Cliq Seller Services",
-        description: "Position your brand on India's most trusted luxury lifestyle platform. We ensure your products meet Tata Cliq's premium standards and reach high-value customers effectively. Our comprehensive service handles everything from the strict 'gated' onboarding process to creating editorial-quality product content. We help you align your brand with the 'Tata' seal of trust, managing logistics, returns, and exclusive promotional campaigns to drive sales among India's discerning shoppers who value authenticity and quality above all else.",
+        description: "Position your brand on India's most trusted luxury lifestyle platform. We handle the strict gated onboarding process and create editorial-quality content that aligns with Tata Cliq's premium standards. Drive sales among high-value shoppers who value authenticity and quality above all else.",
         features: [
             {
                 title: "Brand Authorization Support",
@@ -198,7 +198,7 @@ export const serviceData: Record<string, {
     },
     "reliance-jiomart-seller-services": {
         title: "Reliance JioMart Seller Services",
-        description: "Join the digital retail revolution with Reliance JioMart. We help you integrate with JioMart's hyper-local ecosystem to reach customers in your neighborhood and beyond with speed and efficiency. Our experts manage the technical integration of your inventory for real-time visibility, optimize your store for O2O (Online-to-Offline) sales, and implement robust fulfillment processes. Tap into Reliance's massive user base and transform your local shop into a digital powerhouse.",
+        description: "Maximize your local reach with Reliance JioMart's digital ecosystem. We handle hyper-local inventory integration, O2O (Online-to-Offline) sales strategies, and robust fulfillment processes. Transform your neighborhood shop into a digital powerhouse connected to millions of Reliance users.",
         features: [
             {
                 title: "Hyper-local Inventory Integration",
@@ -241,7 +241,7 @@ export const serviceData: Record<string, {
     },
     "blinkit-seller-services": {
         title: "Blinkit Seller Services",
-        description: "Master the art of quick commerce with our Blinkit Seller Services. Ensure your products are available for 10-minute delivery by optimizing your inventory placement and dark store coordination. We help you decode the fast-paced algorithm of instinct buying, managing stock replenishment to prevent dry-outs during peak hours. From analyzing demand heatmaps to executing high-speed marketing campaigns, we ensure your brand becomes the go-to choice for instant gratification.",
+        description: "Master quick commerce with 10-minute delivery optimization. We ensure your products are always in stock at the right dark stores by decoding demand heatmaps. Be the go-to choice for instant gratification with our high-speed inventory and marketing strategies.",
         features: [
             {
                 title: "Dark Store Inventory Management",
@@ -284,7 +284,7 @@ export const serviceData: Record<string, {
     },
     "meesho-seller-services": {
         title: "Meesho Seller Services",
-        description: "Empower your business with zero commission selling on Meesho. We help you leverage Meesho's unique social commerce model to reach tier-2 and tier-3 cities effectively. Our team optimizes your catalog for the 'reselling' ecosystem, creating viral-ready product bundles and shareable content. We focus on aggressive pricing strategies, bulk selling, and reseller engagement to exponentially grow your reach without the burden of platform commissions.",
+        description: "Leverage zero-commission selling to reach tier-2 and tier-3 cities. We optimize your catalog for social commerce, creating shareable content and viral-ready bundles for resellers. Exponentially grow your reach with aggressive pricing strategies tailored for the mass market.",
         features: [
             {
                 title: "Zero Commission Strategy",
@@ -327,7 +327,7 @@ export const serviceData: Record<string, {
     },
     "zomato-seller-services": {
         title: "Zomato Seller Services",
-        description: "Expand beyond dining and capture the direct-to-consumer delivery market with our Zomato Seller Services. Whether you are a restaurant or a food brand, we help you leverage Zomato's massive user base to drive orders. We optimize your menu engineering, manage hygiene ratings, and execute hyper-local advertising campaigns. Our goal is to turn your listing into a high-conversion digital storefront that dominates your local food delivery ecosystem.",
+        description: "Capture the direct-to-consumer delivery market beyond dining. We optimize your menu engineering, manage hygiene ratings, and execute hyper-local ad campaigns. Turn your Zomato listing into a high-conversion digital storefront that dominates your local food ecosystem.",
         features: [
             {
                 title: "Menu & Catalog Management",
@@ -370,7 +370,7 @@ export const serviceData: Record<string, {
     },
     "swiggy-seller-services": {
         title: "Swiggy Seller Services",
-        description: "Deliver happiness instantly with our Swiggy Seller and Instamart Services. We help you optimize your presence on Swiggy’s vast delivery network, ensuring maximum visibility and operational efficiency. From menu engineering that boosts order value to navigating the specific requirements of Swiggy Instamart onboarding, we handle it all. Our data-driven approach improves your operational metrics, helping you achieve 'Super Seller' status and unlock growth in the hyper-competitive food and grocery delivery market.",
+        description: "Deliver instantly with optimized Swiggy and Instamart strategies. From menu engineering to Instamart onboarding, we improve your operational metrics for 'Super Seller' status. Unlock growth in the hyper-competitive food and grocery delivery market with our data-driven management.",
         features: [
             {
                 title: "Instamart Onboarding",

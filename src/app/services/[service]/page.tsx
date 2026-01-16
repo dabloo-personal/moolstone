@@ -16,6 +16,7 @@ import meeshoHeroImg from "../../meesho-services-hero.png";
 import zomatoHeroImg from "../../zomato-services-hero.png";
 import swiggyHeroImg from "../../swiggy-services-hero.png";
 import { HeroFeatureOverlay } from '@/components/services/HeroFeatureOverlay';
+import { ExpandableText } from "@/components/ui/ExpandableText";
 
 // Service Data Definition
 import { serviceData } from '@/data/services';
@@ -35,12 +36,12 @@ export default async function ServiceDetail({ params }: { params: Promise<{ serv
             {/* Hero Section */}
             {service.image ? (
                 <>
-                    <section className="relative w-full max-w-[95vw] mx-auto pt-32 pb-8">
-                        <div className="relative w-full rounded-[50px] overflow-hidden shadow-2xl">
+                    <section className="relative w-full pt-0">
+                        <div className="relative w-full h-[50vh] overflow-hidden shadow-2xl">
                             <Image
                                 src={service.image}
                                 alt={service.title}
-                                className="w-full h-auto object-cover"
+                                className="w-full h-full object-cover"
                                 priority
                                 placeholder="blur"
                             />
@@ -56,23 +57,27 @@ export default async function ServiceDetail({ params }: { params: Promise<{ serv
                         </div>
                     </section>
 
-                    <section className="relative w-full max-w-[95vw] mx-auto px-4 md:px-6 pb-20 text-left">
-                        <div className="max-w-4xl space-y-8">
-                            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-dark flex items-center gap-4" style={{ color: service.themeColor }}>
-                                <Icon size={48} className="shrink-0" />
-                                {service.title}
-                            </h1>
-                            <p className="text-lg md:text-xl text-text-muted font-medium leading-relaxed">
-                                {service.description}
-                            </p>
-                            <div className="pt-2 pb-12">
-                                <Link href="/contact">
-                                    <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold shadow-xl transition-transform hover:scale-105 shadow-primary/25 text-white">
-                                        Start Selling Now
-                                    </Button>
-                                </Link>
+                    <section className="relative w-full max-w-7xl mx-auto px-6 lg:px-12 py-20 text-left">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                            {/* Left Column: Sticky Info */}
+                            <div className="space-y-8 lg:sticky lg:top-24 self-start">
+                                <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-dark flex items-center gap-4" style={{ color: service.themeColor }}>
+                                    <Icon size={48} className="shrink-0" />
+                                    {service.title}
+                                </h1>
+                                <p className="text-lg md:text-xl text-text-muted font-medium leading-relaxed">
+                                    {service.description}
+                                </p>
+                                <div className="pt-2">
+                                    <Link href="/contact">
+                                        <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold shadow-xl transition-transform hover:scale-105 shadow-primary/25 text-white">
+                                            Start Selling Now
+                                        </Button>
+                                    </Link>
+                                </div>
                             </div>
 
+                            {/* Right Column: Features List */}
                             <div className="grid grid-cols-1 gap-8">
                                 {service.features.map((feature, i) => {
                                     const isObject = typeof feature === 'object';
@@ -99,9 +104,10 @@ export default async function ServiceDetail({ params }: { params: Promise<{ serv
                                                     </h3>
 
                                                     {description ? (
-                                                        <p className="text-gray-600 text-lg leading-relaxed font-medium">
-                                                            {description}
-                                                        </p>
+                                                        <ExpandableText
+                                                            text={description}
+                                                            className="text-gray-600 text-lg leading-relaxed font-medium"
+                                                        />
                                                     ) : (
                                                         <p className="text-gray-500 text-sm font-medium">
                                                             Expertly handled by our dedicated team to ensure maximum compliance and conversion.
