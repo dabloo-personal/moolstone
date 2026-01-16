@@ -41,7 +41,7 @@ export const Navbar = () => {
         <Link href="/" className="flex items-center space-x-4">
           <div className="relative w-16 h-16 md:w-20 md:h-20">
             <Image
-              src="/logo.png"
+              src="/image copy.png"
               alt="MOOLSTONE Logo"
               fill
               className="object-contain mix-blend-multiply"

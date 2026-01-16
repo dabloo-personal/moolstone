@@ -77,18 +77,21 @@ export default function ServicesPage() {
 
             <ul className="space-y-6">
               {[
-                "Amazon Services",
-                "Flipkart Setup & Growth",
-                "Alibaba Services",
-                "Jio Mart",
-                "Jio Mart",
-                "Jio Mart",
-                "Bigbasket",
-                "Other Marketplaces"
+                { name: "Amazon Seller Services", slug: "amazon-seller-services" },
+                { name: "Flipkart Seller Services", slug: "flipkart-seller-services" },
+                { name: "Alibaba Seller Services", slug: "alibaba-seller-services" },
+                { name: "Tata Cliq Seller Services", slug: "tata-cliq-seller-services" },
+                { name: "Reliance JioMart Seller Services", slug: "reliance-jiomart-seller-services" },
+                { name: "Blinkit Seller Services", slug: "blinkit-seller-services" },
+                { name: "Meesho Seller Services", slug: "meesho-seller-services" },
+                { name: "Zomato Seller Services", slug: "zomato-seller-services" },
+                { name: "Swiggy Seller Services", slug: "swiggy-seller-services" }
               ].map((item, i) => (
-                <li key={i} className="flex items-center text-text-muted hover:text-primary transition-colors cursor-default">
-                  <span className="text-primary mr-4 font-bold">➤</span>
-                  <span className="text-lg">{item}</span>
+                <li key={i}>
+                  <Link href={`/services/${item.slug}`} className="flex items-center text-text-muted hover:text-primary transition-colors cursor-pointer group">
+                    <span className="text-primary mr-4 font-bold group-hover:translate-x-1 transition-transform">➤</span>
+                    <span className="text-lg border-b border-transparent group-hover:border-primary/30">{item.name}</span>
+                  </Link>
                 </li>
               ))}
             </ul>

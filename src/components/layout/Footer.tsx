@@ -12,7 +12,7 @@ export const Footer = () => {
           <div className="space-y-8">
             <div className="flex items-center space-x-3">
               <div className="relative w-8 h-8">
-                <Image src="/logo.png" alt="MOOLSTONE Logo" fill className="object-contain" />
+                <Image src="/image copy.png" alt="MOOLSTONE Logo" fill className="object-contain" />
               </div>
               <span className="text-xl font-bold tracking-wider">MOOLSTONE</span>
             </div>

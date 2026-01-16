@@ -2,184 +2,131 @@
 
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Button } from "@/components/ui/Button";
-import { motion } from "framer-motion";
 import {
-  ChevronRight,
+  ArrowRight,
   CheckCircle2,
-  ArrowRight
+  ChevronRight
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { serviceData } from "@/data/services";
 
 export default function EcommerceServicesPage() {
+  const services = Object.values(serviceData);
+
   return (
     <>
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-white">
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="space-y-8">
-            <div className="inline-flex items-center px-3 py-1 bg-orange-50 text-orange-600 text-xs font-bold rounded uppercase tracking-widest">
+      <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/ecommerce-hero.png" // Ensuring we keep the existing hero if available, or fallback
+            alt="Ecommerce Growth Visual"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-screen-xl mx-auto px-6 lg:px-12 text-center text-white">
+          <div className="space-y-8 flex flex-col items-center">
+            <div className="inline-flex items-center px-4 py-1.5 bg-orange-500/20 border border-orange-500/30 text-orange-300 text-xs font-bold rounded uppercase tracking-widest backdrop-blur-sm">
               Marketplace Specialists
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-dark leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight">
               Ecommerce <br />
-              <span className="text-primary">Services</span>
+              <span className="text-orange-400">Services</span>
             </h1>
-            <p className="text-text-muted text-lg md:text-xl max-w-xl leading-relaxed">
+            <p className="text-gray-200 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
               Unlock exponential growth across global marketplaces with Moolstone&apos;s expert management. We scale brands on Amazon, Flipkart, Alibaba, and beyond.
             </p>
-            <div className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
-              <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-10 py-6 text-lg font-bold shadow-xl shadow-primary/20">
+            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+              <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-10 py-6 text-lg font-bold shadow-xl shadow-primary/20 border-none text-white">
                 Contact Our Experts
               </Button>
-              <button className="flex items-center font-bold text-dark hover:text-primary transition-colors group">
+              <button className="flex items-center font-bold text-white hover:text-orange-300 transition-colors group">
                 View Case Studies
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
               </button>
             </div>
           </div>
-
-          <div className="relative aspect-[4/3] rounded-[3rem] overflow-hidden shadow-2xl shadow-orange-100">
-            <Image
-              src="/ecommerce-hero.png"
-              alt="Ecommerce Growth Visual"
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
         </div>
       </section>
 
-      {/* Amazon Marketplace Excellence */}
-      <SectionWrapper className="bg-white">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className="space-y-8 order-2 lg:order-1">
-            <div className="inline-flex items-center px-3 py-1 bg-dark text-white text-[10px] font-bold rounded uppercase tracking-[0.2em]">
-              Amazon SPN Certified
+      {/* Dynamic Service Sections */}
+      {services.map((service, index) => {
+        const isEven = index % 2 === 0;
+        // Take first 3 features for the list
+        const displayFeatures = service.features.slice(0, 3).map(f => typeof f === 'string' ? { title: f, description: "" } : f);
+
+        // Find slug by key
+        const slug = Object.keys(serviceData).find(key => serviceData[key] === service);
+
+        return (
+          <SectionWrapper key={index} className={`bg-white ${index === 0 ? "" : "pt-0"}`}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+              {/* Text Column */}
+              <div className={`space-y-8 ${isEven ? "order-2 lg:order-1" : "order-2"}`}>
+                <div
+                  className="inline-flex items-center px-3 py-1 text-white text-[10px] font-bold rounded uppercase tracking-[0.2em]"
+                  style={{ backgroundColor: service.themeColor || "#000" }}
+                >
+                  {service.title.split(" ")[0]} Certified
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-dark">
+                  {service.title.split(" ").slice(0, -1).join(" ")} <br />
+                  {service.title.split(" ").slice(-1)}
+                </h2>
+                <p className="text-gray-500 text-lg leading-relaxed">
+                  {service.description.split(".")[0]}.
+                </p>
+                <ul className="space-y-6">
+                  {displayFeatures.map((item, i) => (
+                    <li key={i} className="flex items-start space-x-4">
+                      <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-primary mt-1.5 flex-shrink-0">
+                        <CheckCircle2 size={12} strokeWidth={3} />
+                      </div>
+                      <div className="space-y-1">
+                        <h4 className="font-bold text-dark">{item.title}</h4>
+                        {item.description && (
+                          <p className="text-gray-400 text-sm line-clamp-2">{item.description}</p>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <div className="pt-4">
+                  <Link href={`/services/${slug}`}>
+                    <Button variant="outline" className="rounded-full px-8 group border-primary/20 hover:bg-primary/5 hover:text-primary hover:border-primary">
+                      Explore {service.title}
+                      <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Image Column */}
+              <div className={`relative aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-xl group ${isEven ? "order-1 lg:order-2" : "order-1"}`}>
+                {service.image ? (
+                  <Image
+                    src={service.image}
+                    alt={`${service.title} Visual`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                ) : (
+                  <div className={`w-full h-full bg-gradient-to-br ${service.gradientFrom} ${service.gradientTo} opacity-20`} />
+                )}
+                {/* Optional Overlay if needed */}
+                <div className="absolute inset-0 bg-black/5" />
+              </div>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-dark">
-              Amazon Marketplace <br /> Excellence
-            </h2>
-            <p className="text-gray-500 text-lg leading-relaxed">
-              Achieve market leadership with our specialized Amazon SPN certified services designed for rapid scale and stability.
-            </p>
-            <ul className="space-y-6">
-              {[
-                { title: "PPC Management", desc: "Strategic ad spend optimization for maximum ROAS and lower ACOS." },
-                { title: "A+ Content Design", desc: "High-conversion visual storytelling and brand registry support." },
-                { title: "Account Health Monitoring", desc: "Proactive protection and policy compliance management." }
-              ].map((item, i) => (
-                <li key={i} className="flex items-start space-x-4">
-                  <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-primary mt-1.5 flex-shrink-0">
-                    <CheckCircle2 size={12} strokeWidth={3} />
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className="font-bold text-dark">{item.title}</h4>
-                    <p className="text-gray-400 text-sm">{item.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-xl order-1 lg:order-2">
-            <Image
-              src="/amazon-excellence.png"
-              alt="Amazon Excellence Workstation"
-              fill
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </SectionWrapper>
-
-      {/* Flipkart Growth Solutions */}
-      <SectionWrapper className="bg-white pt-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-xl bg-gray-50">
-            {/* Using hero image as fallback for missing generated ones due to quota */}
-            <Image
-              src="/web-dev-hero.png"
-              alt="Flipkart Growth"
-              fill
-              className="object-cover opacity-80"
-            />
-            <div className="absolute inset-0 bg-primary/5" />
-          </div>
-
-          <div className="space-y-8">
-            <div className="inline-flex items-center px-3 py-1 bg-blue-600 text-white text-[10px] font-bold rounded uppercase tracking-[0.2em]">
-              Flipkart Ads Partner
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-dark">
-              Flipkart Growth <br /> Solutions
-            </h2>
-            <p className="text-gray-500 text-lg leading-relaxed">
-              Dominate India&apos;s leading marketplace with tailored visibility strategies that drive organic and paid growth.
-            </p>
-            <ul className="space-y-6">
-              {[
-                { title: "Account Onboarding", desc: "Seamless setup and cataloging for rapid market entry." },
-                { title: "Advertising & Visibility", desc: "Leverage Flipkart&apos;s ad platform to boost product rankings and share of voice." }
-              ].map((item, i) => (
-                <li key={i} className="flex items-start space-x-4">
-                  <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-primary mt-1.5 flex-shrink-0">
-                    <CheckCircle2 size={12} strokeWidth={3} />
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className="font-bold text-dark">{item.title}</h4>
-                    <p className="text-gray-400 text-sm">{item.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </SectionWrapper>
-
-      {/* Alibaba & Global Expansion */}
-      <SectionWrapper className="bg-white pt-0">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className="space-y-8 order-2 lg:order-1">
-            <div className="inline-flex items-center px-3 py-1 bg-orange-600 text-white text-[10px] font-bold rounded uppercase tracking-[0.2em]">
-              Global B2B Mastery
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-dark">
-              Alibaba & Global <br /> Expansion
-            </h2>
-            <p className="text-gray-500 text-lg leading-relaxed">
-              Scale your brand globally with Alibaba Marketplace Mastery and B2B strategic planning.
-            </p>
-            <ul className="space-y-6">
-              {[
-                { title: "Global Sourcing", desc: "Connect with international buyers and streamline complex supply chains." },
-                { title: "B2B Strategy", desc: "Expert guidance on wholesale, RFQs, and bulk order management." }
-              ].map((item, i) => (
-                <li key={i} className="flex items-start space-x-4">
-                  <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-primary mt-1.5 flex-shrink-0">
-                    <CheckCircle2 size={12} strokeWidth={3} />
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className="font-bold text-dark">{item.title}</h4>
-                    <p className="text-gray-400 text-sm">{item.desc}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-xl bg-gray-50 order-1 lg:order-2">
-            <Image
-              src="/who-we-are.png"
-              alt="Global Shipping Containers"
-              fill
-              className="object-cover opacity-80"
-            />
-            <div className="absolute inset-0 bg-dark/10" />
-          </div>
-        </div>
-      </SectionWrapper>
+          </SectionWrapper>
+        );
+      })}
 
       {/* Stats Bar */}
       <div className="bg-[#12110c] py-20 px-6 lg:px-12">
