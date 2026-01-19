@@ -2,6 +2,57 @@
 
 import React, { useEffect, useRef } from 'react';
 
+const particleCount = 60;
+const connectionDistance = 150;
+const mouse = { x: 0, y: 0, radius: 150 };
+
+class Particle {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    size: number;
+    canvasWidth: number;
+    canvasHeight: number;
+
+    constructor(canvasWidth: number, canvasHeight: number) {
+        this.canvasWidth = canvasWidth;
+        this.canvasHeight = canvasHeight;
+        this.x = Math.random() * this.canvasWidth;
+        this.y = Math.random() * this.canvasHeight;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.size = Math.random() * 2 + 1;
+    }
+
+    update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0 || this.x > this.canvasWidth) this.vx *= -1;
+        if (this.y < 0 || this.y > this.canvasHeight) this.vy *= -1;
+
+        // Mouse interaction
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < mouse.radius) {
+            const force = (mouse.radius - distance) / mouse.radius;
+            const directionX = dx / distance;
+            const directionY = dy / distance;
+            this.x -= directionX * force * 2;
+            this.y -= directionY * force * 2;
+        }
+    }
+
+    draw(ctx: CanvasRenderingContext2D) {
+        ctx.fillStyle = 'rgba(249, 115, 22, 0.4)'; // Orange particles
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
 const DynamicBackground: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -14,60 +65,13 @@ const DynamicBackground: React.FC = () => {
 
         let animationFrameId: number;
         let particles: Particle[] = [];
-        const particleCount = 60;
-        const connectionDistance = 150;
-        const mouse = { x: 0, y: 0, radius: 150 };
-
-        class Particle {
-            x: number;
-            y: number;
-            vx: number;
-            vy: number;
-            size: number;
-
-            constructor() {
-                this.x = Math.random() * canvas!.width;
-                this.y = Math.random() * canvas!.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 2 + 1;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > canvas!.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas!.height) this.vy *= -1;
-
-                // Mouse interaction
-                const dx = mouse.x - this.x;
-                const dy = mouse.y - this.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < mouse.radius) {
-                    const force = (mouse.radius - distance) / mouse.radius;
-                    const directionX = dx / distance;
-                    const directionY = dy / distance;
-                    this.x -= directionX * force * 2;
-                    this.y -= directionY * force * 2;
-                }
-            }
-
-            draw() {
-                if (!ctx) return;
-                ctx.fillStyle = 'rgba(249, 115, 22, 0.4)'; // Orange particles
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
 
         const init = () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             particles = [];
             for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
+                particles.push(new Particle(canvas.width, canvas.height));
             }
         };
 
@@ -76,7 +80,7 @@ const DynamicBackground: React.FC = () => {
 
             particles.forEach((p, index) => {
                 p.update();
-                p.draw();
+                p.draw(ctx);
 
                 for (let j = index + 1; j < particles.length; j++) {
                     const p2 = particles[j];

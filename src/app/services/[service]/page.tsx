@@ -36,12 +36,12 @@ export default async function ServiceDetail({ params }: { params: Promise<{ serv
             {/* Hero Section */}
             {service.image ? (
                 <>
-                    <section className="relative w-full pt-0">
-                        <div className="relative w-full h-[50vh] overflow-hidden shadow-2xl">
+                    <section className="relative w-full p-4 md:p-6">
+                        <div className="relative w-full h-[50vh] overflow-hidden shadow-2xl rounded-[2.5rem]">
                             <Image
                                 src={service.image}
                                 alt={service.title}
-                                className="w-full h-full object-cover"
+                                className={`w-full h-full object-cover ${service.imagePosition || 'object-top'}`}
                                 priority
                                 placeholder="blur"
                             />

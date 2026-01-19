@@ -1,26 +1,28 @@
 "use client";
 
-import { HeroSection } from "@/components/sections/HeroSection";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Button } from "@/components/ui/Button";
-import { motion } from "framer-motion";
 import {
-  Settings,
-  Handshake,
-  Target,
   ArrowRight,
+  CheckCircle2,
   ChevronRight
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { webServiceData } from "@/data/services";
+import { ExpandableText } from "@/components/ui/ExpandableText";
+import { motion } from "framer-motion";
+import webDevHeroImg from "../web-development-design.jpg";
 
 export default function WebDevelopmentServicesPage() {
+  const services = Object.values(webServiceData);
+
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden bg-dark">
+      <section className="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden bg-dark mx-4 my-4 rounded-[2.5rem]">
         <Image
-          src="/web-dev-hero.png"
+          src={webDevHeroImg}
           alt="Web Development Services"
           fill
           className="object-cover opacity-60"
@@ -43,7 +45,7 @@ export default function WebDevelopmentServicesPage() {
               transition={{ delay: 0.1 }}
               className="text-xl text-white/80 mb-10"
             >
-              Innovating Digital Experiences
+              Innovating Digital Experiences with robust, scalable, and high-performance solutions.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -51,185 +53,117 @@ export default function WebDevelopmentServicesPage() {
               transition={{ delay: 0.2 }}
             >
               <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold">
-                Submit
+                Get a Quote
               </Button>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* What We Offer Section */}
-      <SectionWrapper className="bg-white overflow-hidden relative">
-        {/* Background Grid Accent */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none opacity-5">
-          <div className="grid grid-cols-10 grid-rows-10 w-full h-full border-t border-r border-dark">
-            {[...Array(100)].map((_, i) => (
-              <div key={i} className="border-b border-l border-dark/20" />
-            ))}
-          </div>
-        </div>
+      {/* Dynamic Service Sections */}
+      {services.map((service, index) => {
+        const isEven = index % 2 === 0;
+        // Take first 3 features for the list (or all, layout handles it)
+        const displayFeatures = service.features.map(f => typeof f === 'string' ? { title: f, description: "" } : f);
 
-        <div className="text-center mb-20 relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-dark mb-4">What We Offer</h2>
-        </div>
+        // Find slug by key
+        const slug = Object.keys(webServiceData).find(key => webServiceData[key] === service);
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-screen-2xl mx-auto relative z-10">
-          {/* Card 1 */}
-          <div className="bg-white p-12 rounded-[2rem] border border-gray-100 shadow-xl shadow-gray-200/50 space-y-8 relative group">
-            <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
-              <Settings size={32} />
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-dark">Automation & AI Solutions</h3>
-              <ul className="space-y-4 text-gray-500">
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mr-3 flex-shrink-0" />
-                  Intelligent Workflow Automation
-                </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mr-3 flex-shrink-0" />
-                  Data & Data Science
-                </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mr-3 flex-shrink-0" />
-                  Generative AI Development
-                </li>
-                <li className="flex items-center">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mr-3 flex-shrink-0" />
-                  Data Insight
-                </li>
-              </ul>
-            </div>
-            <div className="absolute bottom-8 right-8 w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center text-primary/40 group-hover:bg-primary group-hover:text-white transition-all cursor-pointer">
-              <ArrowRight size={20} />
-            </div>
-          </div>
-
-          {/* Card 2 */}
-          <div className="bg-white p-12 rounded-[2rem] border border-gray-100 shadow-xl shadow-gray-200/50 space-y-8 relative group">
-            <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
-              <Settings size={32} />
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-dark">UI/UX & Web Development</h3>
-              <p className="text-gray-500 leading-relaxed text-lg">
-                Uebisea forms esencia velit ad desgn tality tech development and clarity focus.
-              </p>
-            </div>
-            <div className="absolute bottom-8 right-8 w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center text-primary/40 group-hover:bg-primary group-hover:text-white transition-all cursor-pointer">
-              <ArrowRight size={20} />
-            </div>
-          </div>
-        </div>
-      </SectionWrapper>
-
-      {/* Our Process Section (Timeline) */}
-      <SectionWrapper className="bg-gray-50">
-        <div className="text-center mb-24">
-          <h2 className="text-4xl md:text-5xl font-bold text-dark">Our Process</h2>
-        </div>
-
-        <div className="max-w-5xl mx-auto relative px-6">
-          {/* Horizontal Line */}
-          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 -translate-y-1/2 hidden md:block" />
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
-            {[
-              { num: "1", title: "Discover & Plan", icon: "?" },
-              { num: "2", title: "Design & Develop", icon: "⚙" },
-              { num: "3", title: "Test Launch", icon: "✔" },
-              { num: "4", title: "Support & Evolve", icon: "♾" }
-            ].map((step, i) => (
-              <div key={i} className="text-center group">
-                <div className="w-16 h-16 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:border-primary transition-colors relative z-20">
-                  <span className="text-2xl text-dark group-hover:text-primary transition-colors">{step.icon}</span>
+        return (
+          <SectionWrapper key={index} id={slug} className={`bg-white ${index === 0 ? "pt-12 lg:pt-20" : "pt-0"} pb-12 lg:pb-20`}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center max-w-7xl mx-auto">
+              {/* Text Column */}
+              <div className={`space-y-6 lg:space-y-8 ${isEven ? "order-2 lg:order-1" : "order-2"}`}>
+                <div
+                  className="inline-flex items-center px-3 py-1 text-white text-[10px] font-bold rounded uppercase tracking-[0.2em]"
+                  style={{ backgroundColor: service.themeColor || "#000" }}
+                >
+                  Expertise
                 </div>
-                <h4 className="text-lg font-bold text-dark mb-2">{step.num}. {step.title}</h4>
+                <h2 className="text-3xl lg:text-5xl font-bold text-dark leading-tight">
+                  {service.title}
+                </h2>
+
+                <ExpandableText
+                  text={service.description}
+                  className="text-gray-500 text-base lg:text-lg leading-relaxed"
+                />
+
+                <ul className="space-y-4">
+                  {displayFeatures.map((item, i) => (
+                    <li key={i} className="flex items-start space-x-3 lg:space-x-4">
+                      <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-primary mt-1 flex-shrink-0">
+                        <CheckCircle2 size={12} strokeWidth={3} />
+                      </div>
+                      <div className="space-y-1">
+                        <h4 className="font-bold text-dark text-sm lg:text-base">{item.title}</h4>
+                        {item.description && (
+                          <p className="text-gray-400 text-xs lg:text-sm line-clamp-1">{item.description}</p>
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+                <div className="pt-2 lg:pt-4">
+                  <Link href={`#contact`}>
+                    <Button variant="outline" className="rounded-full px-6 py-5 lg:px-8 lg:py-6 text-sm lg:text-base group border-primary/20 hover:bg-primary/5 hover:text-primary hover:border-primary transition-all w-full sm:w-auto">
+                      Start Project
+                      <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
+                    </Button>
+                  </Link>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </SectionWrapper>
 
-      {/* Core Values Section */}
-      <SectionWrapper className="bg-white">
-        <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-dark">Our Process</h2>
-        </div>
+              {/* Image Column */}
+              <div className={`relative aspect-[4/3] rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl group ${isEven ? "order-1 lg:order-2" : "order-1"}`}>
+                {service.image ? (
+                  <Image
+                    src={service.image}
+                    alt={`${service.title} Visual`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+                  />
+                ) : (
+                  <div className={`w-full h-full bg-gradient-to-br ${service.gradientFrom} ${service.gradientTo} opacity-20`} />
+                )}
+                <div className="absolute inset-0 bg-black/5" />
+              </div>
+            </div>
+          </SectionWrapper>
+        );
+      })}
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-screen-2xl mx-auto">
+      {/* Stats Bar */}
+      <div className="bg-[#12110c] py-20 px-6 lg:px-12">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
           {[
-            {
-              title: "Quality & Craftsmanship",
-              desc: "Every line of code is written with precision and long-term scalability in mind.",
-              icon: <Settings size={32} />
-            },
-            {
-              title: "Reliability & Trust",
-              desc: "Desprience is the trust direct in client results and success.",
-              icon: <Handshake size={32} />
-            },
-            {
-              title: "Client-Centric Approach",
-              desc: "Your goals are our goals. We work as an extension of your team.",
-              icon: <Target size={32} />
-            }
-          ].map((value, i) => (
-            <div key={i} className="bg-[#fcfcfc] p-12 rounded-[2.5rem] text-center space-y-6 hover:shadow-xl transition-shadow border border-gray-50">
-              <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mx-auto">
-                {value.icon}
-              </div>
-              <h4 className="text-xl font-bold text-dark">{value.title}</h4>
-              <p className="text-gray-500 leading-relaxed">{value.desc}</p>
+            { value: "50+", label: "Web Projects" },
+            { value: "98%", label: "Client Retention" },
+            { value: "3x", label: "Traffic Growth" },
+            { value: "24/7", label: "Support" }
+          ].map((stat, i) => (
+            <div key={i} className="space-y-2">
+              <div className="text-4xl md:text-5xl font-bold text-primary">{stat.value}</div>
+              <div className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em]">{stat.label}</div>
             </div>
           ))}
         </div>
-      </SectionWrapper>
+      </div>
 
-      {/* Commitment & CTA Section */}
-      <SectionWrapper className="bg-gray-50 pb-0">
-        <div className="max-w-screen-2xl mx-auto bg-white rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl shadow-gray-200/50 flex flex-col md:row relative">
-          <div className="p-12 md:p-20 flex-1 space-y-12">
-            <div className="space-y-6">
-              <h4 className="text-primary font-bold tracking-widest uppercase">Commitment to Excellence</h4>
-              <h2 className="text-4xl font-bold text-dark">Our Process</h2>
-            </div>
-
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h5 className="text-xl font-bold text-dark">Web Development Excellence</h5>
-                <ul className="space-y-3">
-                  <li className="flex items-center text-gray-500">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mr-3" />
-                    Enterprise Plan
-                  </li>
-                </ul>
-              </div>
-
-              <div className="space-y-8">
-                <h2 className="text-4xl md:text-5xl font-bold text-dark">Ready to Build Something Amazing?</h2>
-                <p className="text-gray-400 text-lg">
-                  Get started with your vision of a next-level digital experience for your brand and business.
-                </p>
-                <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold">
-                  Connect Us
-                </Button>
-              </div>
-            </div>
+      {/* Ready to Scale Section */}
+      <SectionWrapper className="bg-white">
+        <div className="max-w-screen-2xl mx-auto bg-[#fff9f4] rounded-[2rem] md:rounded-[3rem] p-10 md:p-24 text-center space-y-12">
+          <div className="space-y-6">
+            <h2 className="text-4xl md:text-6xl font-bold text-dark">Ready to Build?</h2>
+            <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+              Transform your digital presence with high-impact web solutions. Let&apos;s turn your vision into reality.
+            </p>
           </div>
 
-          <div className="relative w-full md:w-1/3 min-h-[400px]">
-            <div className="absolute inset-0 bg-primary/5 overflow-hidden">
-              <Image
-                src="/footer-tree.png"
-                alt="Tree Accent"
-                fill
-                className="object-contain object-bottom scale-125 opacity-40 translate-x-12 translate-y-12"
-              />
-            </div>
-          </div>
+          <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold shadow-xl shadow-primary/20">
+            Contact Us Today
+          </Button>
         </div>
-        <div className="h-24 md:h-32" /> {/* Spacing */}
       </SectionWrapper>
     </>
   );

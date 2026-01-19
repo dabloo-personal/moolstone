@@ -32,9 +32,11 @@ export default function Home() {
             bgIcon={Layout}
             href="/web-development-services"
             items={[
-              "High-performance Full-stack Applications",
-              "Custom AI Model Integration (LLMs)",
-              "Business Process Workflow Automation",
+              { label: "Full-Stack Web Development", href: "/web-development-services#full-stack-web-development" },
+              { label: "E-commerce & UI/UX Design", href: "/web-development-services#ecommerce-ui-ux-design" },
+              { label: "AI & Social Media Automation", href: "/web-development-services#ai-social-media-automation" },
+              { label: "SEO & Google Maps Onboarding", href: "/web-development-services#seo-google-maps-onboarding" },
+              { label: "Site Migrations & Maintenance", href: "/web-development-services#site-migrations-maintenance" },
             ]}
           />
           <ServiceCard
@@ -43,9 +45,11 @@ export default function Home() {
             bgIcon={ShoppingCart}
             href="/ecommerce-services"
             items={[
-              "Headless Commerce Solutions",
-              "Conversion Rate Optimization (CRO)",
-              "Enterprise Marketplace Scaling",
+              { label: "Amazon Seller Services", href: "/ecommerce-services#amazon-seller-services" },
+              { label: "Flipkart Seller Services", href: "/ecommerce-services#flipkart-seller-services" },
+              { label: "Alibaba Seller Services", href: "/ecommerce-services#alibaba-seller-services" },
+              { label: "Tata Cliq Seller Services", href: "/ecommerce-services#tata-cliq-seller-services" },
+              { label: "Reliance JioMart Seller Services", href: "/ecommerce-services#reliance-jiomart-seller-services" },
             ]}
           />
         </div>

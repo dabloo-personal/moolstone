@@ -147,7 +147,7 @@ export default function ServicesPage() {
             className="bg-white py-8 md:pr-16 space-y-6 flex flex-col h-[500px]"
           >
             <div className="flex-shrink-0">
-              <h2 className="text-2xl md:text-3xl font-bold text-dark mb-3">Development & AI Automation</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-dark mb-3">Web Development & AI Automation</h2>
               <p className="text-text-muted leading-relaxed text-sm md:text-base">
                 We design and engineer high-performance digital products using modern frameworks, scalable architectures, and intelligent automation.
               </p>
@@ -156,18 +156,16 @@ export default function ServicesPage() {
             <div className="flex-grow relative overflow-hidden">
               <InfiniteScroll direction="up" speed={0.5} className="h-[300px]">
                 {[
-                  { name: "Custom Web Applications (MVP → Scale)", slug: "custom-web-apps" },
-                  { name: "SaaS & Platform Development", slug: "saas-platform-development" },
-                  { name: "UI/UX Design for Conversion", slug: "ui-ux-design" },
-                  { name: "AI & Workflow Automation", slug: "ai-automation" },
-                  { name: "API & System Integrations", slug: "api-integrations" },
-                  { name: "Performance & Scalability Optimization", slug: "performance-optimization" },
-                  { name: "Long-Term Maintenance & Support", slug: "maintenance-support" }
+                  { name: "Full-Stack Web Development", slug: "full-stack-web-development" },
+                  { name: "E-commerce & UI/UX Design", slug: "ecommerce-ui-ux-design" },
+                  { name: "AI & Social Media Automation", slug: "ai-social-media-automation" },
+                  { name: "SEO & Google Maps Onboarding", slug: "seo-google-maps-onboarding" },
+                  { name: "Site Migrations & Maintenance", slug: "site-migrations-maintenance" }
                 ].map((item, i) => (
                   <Link
                     key={i}
-                    href={`/services/${item.slug}`}
-                    className="flex items-center p-4 rounded-xl bg-gray-50 hover:bg-primary/5 hover:text-primary transition-all cursor-pointer group border border-transparent hover:border-primary/10"
+                    href={`/web-development-services#${item.slug}`}
+                    className="flex items-center p-4 rounded-xl bg-gray-50 hover:bg-primary/5 hover:text-primary transition-all cursor-pointer group border border-transparent hover:border-primary/10 no-underline hover:no-underline"
                   >
                     <span className="text-primary mr-3 decoration-skip-ink font-bold group-hover:scale-110 transition-transform">➤</span>
                     <span className="font-medium text-dark group-hover:text-primary">{item.name}</span>
@@ -195,7 +193,7 @@ export default function ServicesPage() {
             className="bg-white py-8 md:pl-16 space-y-6 flex flex-col h-[500px]"
           >
             <div className="flex-shrink-0">
-              <h2 className="text-2xl md:text-3xl font-bold text-dark mb-3">E-Commerce & Marketplace Growth</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-dark mb-3">Ecommerce Services</h2>
               <p className="text-text-muted leading-relaxed text-sm md:text-base">
                 End-to-end seller enablement across India’s top marketplaces, from onboarding to scale.
               </p>
@@ -217,7 +215,7 @@ export default function ServicesPage() {
                   <Link
                     key={i}
                     href={`/services/${item.slug}`}
-                    className="flex items-center p-4 rounded-xl bg-gray-50 hover:bg-primary/5 hover:text-primary transition-all cursor-pointer group border border-transparent hover:border-primary/10"
+                    className="flex items-center p-4 rounded-xl bg-gray-50 hover:bg-primary/5 hover:text-primary transition-all cursor-pointer group border border-transparent hover:border-primary/10 no-underline hover:no-underline"
                   >
                     <span className="text-primary mr-3 font-bold group-hover:scale-110 transition-transform">➤</span>
                     <span className="font-medium text-dark group-hover:text-primary">{item.name}</span>

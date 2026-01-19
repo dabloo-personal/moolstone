@@ -11,7 +11,7 @@ interface ServiceCardProps {
   description?: string;
   icon: React.ReactNode;
   bgIcon?: LucideIcon;
-  items?: string[];
+  items?: (string | { label: string; href?: string })[];
   variant?: 'light' | 'white';
   href?: string;
 }
@@ -51,12 +51,23 @@ export const ServiceCard = ({ title, description, icon, bgIcon: BgIcon, items, v
 
         {items && items.length > 0 && (
           <ul className="space-y-4 flex-grow">
-            {items.map((item, i) => (
-              <li key={i} className="flex items-start text-base text-text-muted">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 mr-3 flex-shrink-0" />
-                {item}
-              </li>
-            ))}
+            {items.map((item, i) => {
+              const label = typeof item === 'string' ? item : item.label;
+              const link = typeof item === 'string' ? null : item.href;
+
+              return (
+                <li key={i} className="flex items-start text-base text-text-muted">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 mr-3 flex-shrink-0" />
+                  {link ? (
+                    <Link href={link} className="hover:text-primary transition-colors hover:underline decoration-primary/30 underline-offset-4">
+                      {label}
+                    </Link>
+                  ) : (
+                    <span>{label}</span>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         )}
 

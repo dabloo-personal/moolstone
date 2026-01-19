@@ -3,7 +3,7 @@ import { StaticImageData } from 'next/image';
 import React from 'react';
 
 // Images located in src/app/
-import amazonHeroImg from "../app/amazon-services-hero.jpg";
+import amazonHeroImg from "../app/amazon-services-hero.png";
 import flipkartHeroImg from "../app/flipkart-services-hero.png";
 import alibabaHeroImg from "../app/alibaba-services-hero.png";
 import tataCliqHeroImg from "../app/tatacliq-services-hero.png";
@@ -23,6 +23,7 @@ export const serviceData: Record<string, {
     gradientTo: string;
     image?: string | StaticImageData;
     themeColor?: string;
+    imagePosition?: string;
 }> = {
     "amazon-seller-services": {
         title: "Amazon Seller Services",
@@ -410,5 +411,82 @@ export const serviceData: Record<string, {
         gradientTo: "to-orange-700",
         themeColor: "#FC8019",
         image: swiggyHeroImg
+    }
+};
+
+export const webServiceData: Record<string, {
+    title: string;
+    description: string;
+    features: (string | { title: string; description: string })[];
+    icon?: React.ElementType; // Optional for web services
+    gradientFrom: string;
+    gradientTo: string;
+    image?: string | StaticImageData;
+    themeColor?: string;
+}> = {
+    "full-stack-web-development": {
+        title: "Full-Stack Web Development",
+        description: "We build robust, scalable, and high-performance web applications using the latest technologies like Next.js, React, Node.js, and more. From database design to frontend interactivity, we handle it all.",
+        features: [
+            { title: "Custom Web App Development", description: "Tailored solutions to meet your specific business needs." },
+            { title: "API Development & Integration", description: "Seamless connection between your services and third-party tools." },
+            { title: "Database Architecture", description: "Optimized data storage and retrieval systems." },
+            { title: "Progressive Web Apps (PWA)", description: "Mobile-first experiences that work offline." }
+        ],
+        gradientFrom: "from-blue-600",
+        gradientTo: "to-cyan-400",
+        themeColor: "#0070f3"
+    },
+    "ecommerce-ui-ux-design": {
+        title: "E-commerce & UI/UX Design",
+        description: "Create visually stunning and highly converting online stores. We focus on user experience to drive sales and customer retention.",
+        features: [
+            { title: "Shopify & WooCommerce Setup", description: "Quick launch of professional online stores." },
+            { title: "Custom Storefront Design", description: "Unique designs that reflect your brand identity." },
+            { title: "Conversion Rate Optimization (CRO)", description: "Data-driven design changes to boost sales." },
+            { title: "Mobile-Responsive Layouts", description: "Perfect shopping experience on any device." }
+        ],
+        gradientFrom: "from-purple-600",
+        gradientTo: "to-pink-400",
+        themeColor: "#7928ca"
+    },
+    "ai-social-media-automation": {
+        title: "AI & Social Media Automation",
+        description: "Leverage the power of Artificial Intelligence to automate your marketing and operations. Save time and increase efficiency with our smart solutions.",
+        features: [
+            { title: "Chatbot Integration", description: "24/7 customer support automation." },
+            { title: "Content Generation Pipelines", description: "Automated blog and social media post creation." },
+            { title: "Social Media Scheduling", description: "Consistent posting without manual effort." },
+            { title: "Data Analysis & Insights", description: "AI-driven analytics to understand your audience." }
+        ],
+        gradientFrom: "from-green-600",
+        gradientTo: "to-emerald-400",
+        themeColor: "#10b981"
+    },
+    "seo-google-maps-onboarding": {
+        title: "SEO & Google Maps Onboarding",
+        description: "Get found by your local customers. We optimize your online presence to rank higher on search engines and Google Maps.",
+        features: [
+            { title: "Local SEO Optimization", description: "Dominate local search results." },
+            { title: "Google Business Profile Setup", description: "Complete optimization of your GMB listing." },
+            { title: "Keyword Research & Strategy", description: "Targeting the right terms for your business." },
+            { title: "On-Page & Off-Page SEO", description: "Comprehensive approach to search rankings." }
+        ],
+        gradientFrom: "from-orange-600",
+        gradientTo: "to-yellow-400",
+        themeColor: "#f59e0b"
+    },
+    "site-migrations-maintenance": {
+        title: "Site Migrations & Maintenance",
+        description: "Zero downtime migrations and ongoing support to keep your digital assets secure and up-to-date.",
+        features: [
+            { title: "Seamless Platform Migration", description: "Moving your site without losing data or SEO rankings." },
+            { title: "Security Audits & Patches", description: "Protecting your site from vulnerabilities." },
+            { title: "Performance Optimization", description: "Speeding up your site for better user experience." },
+            { title: "Regular Backups", description: "Safety net for your critical business data." }
+        ],
+        gradientFrom: "from-gray-700",
+        gradientTo: "to-gray-500",
+        themeColor: "#4b5563"
     }
 };

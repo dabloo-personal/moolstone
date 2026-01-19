@@ -1,0 +1,11 @@
+src/app/page.tsx(35,15): error TS2322: Type '{ label: string; href: string; }' is not assignable to type 'string'.
+src/app/page.tsx(36,15): error TS2322: Type '{ label: string; href: string; }' is not assignable to type 'string'.
+src/app/page.tsx(37,15): error TS2322: Type '{ label: string; href: string; }' is not assignable to type 'string'.
+src/app/page.tsx(38,15): error TS2322: Type '{ label: string; href: string; }' is not assignable to type 'string'.
+src/app/page.tsx(39,15): error TS2322: Type '{ label: string; href: string; }' is not assignable to type 'string'.
+src/app/page.tsx(48,15): error TS2322: Type '{ label: string; href: string; }' is not assignable to type 'string'.
+src/app/page.tsx(49,15): error TS2322: Type '{ label: string; href: string; }' is not assignable to type 'string'.
+src/app/page.tsx(50,15): error TS2322: Type '{ label: string; href: string; }' is not assignable to type 'string'.
+src/app/page.tsx(51,15): error TS2322: Type '{ label: string; href: string; }' is not assignable to type 'string'.
+src/app/page.tsx(52,15): error TS2322: Type '{ label: string; href: string; }' is not assignable to type 'string'.
+src/app/services/[service]/page.tsx(44,82): error TS2339: Property 'imagePosition' does not exist on type '{ title: string; description: string; features: (string | { title: string; description: string; })[]; icon: ElementType<any, keyof IntrinsicElements>; gradientFrom: string; gradientTo: string; image?: string | ... 1 more ... | undefined; themeColor?: string | undefined; }'.

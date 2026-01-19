@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/Button';
 
+import { TelegramUpdate } from './types';
+
 export default function TelegramSetup() {
     const [token, setToken] = useState('');
-    const [updates, setUpdates] = useState<any[]>([]);
+    const [updates, setUpdates] = useState<TelegramUpdate[]>([]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -22,8 +24,12 @@ export default function TelegramSetup() {
             }
 
             setUpdates(data.result);
-        } catch (err: any) {
-            setError(err.message);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError('An unknown error occurred');
+            }
         } finally {
             setLoading(false);
         }
@@ -40,8 +46,8 @@ export default function TelegramSetup() {
                         <ol className="list-decimal list-inside mt-2 space-y-1">
                             <li>Create your bot with <strong>@BotFather</strong> on Telegram to get a Token.</li>
                             <li>Add your bot to your group.</li>
-                            <li><strong>Send a message</strong> in the group (e.g., "Hello").</li>
-                            <li>Paste your Token below and click "Find Chat IDs".</li>
+                            <li><strong>Send a message</strong> in the group (e.g., &quot;Hello&quot;).</li>
+                            <li>Paste your Token below and click &quot;Find Chat IDs&quot;.</li>
                         </ol>
                     </div>
 

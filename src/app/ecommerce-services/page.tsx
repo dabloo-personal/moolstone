@@ -18,7 +18,7 @@ export default function EcommerceServicesPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative w-full min-h-[50vh] flex items-center overflow-hidden py-12 lg:py-0">
+      <section className="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden mx-4 my-4 rounded-[2.5rem]">
         <Image
           src="/ecommerce-hero.png" // Fallback or existing hero
           alt="Ecommerce Growth Visual"
@@ -26,21 +26,20 @@ export default function EcommerceServicesPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4 md:px-6">
-          <div className="inline-flex items-center px-4 py-1.5 bg-orange-500/20 border border-orange-500/30 text-orange-300 text-[10px] md:text-xs font-bold rounded uppercase tracking-widest backdrop-blur-sm mb-4 md:mb-6">
-            Marketplace Specialists
-          </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 md:mb-6">
-            Ecommerce <span className="text-orange-400">Services</span>
-          </h1>
-          <p className="text-gray-200 text-base md:text-xl max-w-2xl mx-auto leading-relaxed mb-6 md:mb-8">
-            Unlock exponential growth across global marketplaces with Moolstone&apos;s expert management.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 w-full sm:w-auto">
-            <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-8 py-3 md:px-10 md:py-4 text-base md:text-lg font-bold shadow-xl shadow-primary/20 border-none text-white w-full sm:w-auto">
-              Contact Our Experts
-            </Button>
+        <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/80 to-transparent" />
+        <div className="relative z-10 max-w-screen-2xl mx-auto px-6 lg:px-12 w-full h-full flex items-center">
+          <div className="max-w-2xl text-left">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+              Ecommerce Services
+            </h1>
+            <p className="text-xl text-white/80 mb-10">
+              Innovating Marketplace Growth with robust, scalable, and high-performance solutions.
+            </p>
+            <div>
+              <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold border-none text-white">
+                Get a Quote
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -55,7 +54,7 @@ export default function EcommerceServicesPage() {
         const slug = Object.keys(serviceData).find(key => serviceData[key] === service);
 
         return (
-          <SectionWrapper key={index} className={`bg-white ${index === 0 ? "pt-12 lg:pt-20" : "pt-0"} pb-12 lg:pb-20`}>
+          <SectionWrapper key={index} id={slug} className={`bg-white ${index === 0 ? "pt-12 lg:pt-20" : "pt-0"} pb-12 lg:pb-20`}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center max-w-7xl mx-auto">
               {/* Text Column */}
               <div className={`space-y-6 lg:space-y-8 ${isEven ? "order-2 lg:order-1" : "order-2"}`}>
