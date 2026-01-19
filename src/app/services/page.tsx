@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import { HeroSection } from "@/components/sections/HeroSection";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Button } from "@/components/ui/Button";
@@ -10,6 +11,20 @@ import { motion } from "framer-motion";
 import { InfiniteScroll } from "@/components/ui/InfiniteScroll";
 
 export default function ServicesPage() {
+  const [blobs, setBlobs] = useState<Array<{ width: number; height: number; top: string; left: string; y: number; x: number; duration: number }>>([]);
+
+  useEffect(() => {
+    setBlobs([...Array(8)].map(() => ({
+      width: Math.random() * 400 + 200,
+      height: Math.random() * 400 + 200,
+      top: Math.random() * 100 + "%",
+      left: Math.random() * 100 + "%",
+      y: Math.random() * 200 - 100,
+      x: Math.random() * 200 - 100,
+      duration: Math.random() * 15 + 15,
+    })));
+  }, []);
+
   return (
     <>
       {/* Hero Section */}
@@ -19,24 +34,24 @@ export default function ServicesPage() {
         {/* Animated Background Effect */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.08)_1px,transparent_1px)] bg-[length:24px_24px]" />
-          {[...Array(8)].map((_, i) => (
+          {blobs.map((blob, i) => (
             <motion.div
               key={i}
               className="absolute bg-primary/10 rounded-full blur-3xl mix-blend-multiply"
               style={{
-                width: Math.random() * 400 + 200,
-                height: Math.random() * 400 + 200,
-                top: Math.random() * 100 + "%",
-                left: Math.random() * 100 + "%",
+                width: blob.width,
+                height: blob.height,
+                top: blob.top,
+                left: blob.left,
               }}
               animate={{
-                y: [0, Math.random() * 200 - 100],
-                x: [0, Math.random() * 200 - 100],
+                y: [0, blob.y],
+                x: [0, blob.x],
                 opacity: [0.2, 0.5, 0.2],
                 scale: [1, 1.2, 1],
               }}
               transition={{
-                duration: Math.random() * 15 + 15,
+                duration: blob.duration,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
@@ -87,9 +102,11 @@ export default function ServicesPage() {
             transition={{ delay: 0.6 }}
             className="flex flex-col items-center gap-6"
           >
-            <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-10 py-3 text-lg font-bold shadow-xl shadow-primary/25 z-20 relative">
-              Get a Free Consultation
-            </Button>
+            <a href="tel:+917004085490">
+              <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-10 py-3 text-lg font-bold shadow-xl shadow-primary/25 z-20 relative">
+                Get a Free Consultation
+              </Button>
+            </a>
 
             {/* Horizontal Marquee */}
             <div className="w-full max-w-2xl mt-8 opacity-90">
@@ -155,11 +172,17 @@ export default function ServicesPage() {
               </InfiniteScroll>
             </div>
 
-            <div className="flex-shrink-0 pt-4">
+            <div className="flex-shrink-0 pt-4 flex flex-wrap gap-4">
               <Link href="/web-development-services">
                 <Button className="rounded-full bg-primary hover:bg-primary-dark px-8 py-2 text-base group w-full md:w-auto">
                   Explore Solutions
                   <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button className="rounded-full px-6 py-2 text-sm group w-full md:w-auto bg-primary hover:bg-primary-dark text-white transition-colors">
+                  Start Project
+                  <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={14} />
                 </Button>
               </Link>
             </div>
@@ -205,11 +228,17 @@ export default function ServicesPage() {
               </InfiniteScroll>
             </div>
 
-            <div className="flex-shrink-0 pt-4">
+            <div className="flex-shrink-0 pt-4 flex flex-wrap gap-4">
               <Link href="/ecommerce-services">
                 <Button className="rounded-full bg-primary hover:bg-primary-dark px-8 py-2 text-base group w-full md:w-auto">
                   Explore Marketplace Services
                   <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button className="rounded-full px-6 py-2 text-sm group w-full md:w-auto bg-primary hover:bg-primary-dark text-white transition-colors">
+                  Start Selling
+                  <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={14} />
                 </Button>
               </Link>
             </div>

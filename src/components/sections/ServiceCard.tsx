@@ -11,12 +11,27 @@ interface ServiceCardProps {
   description?: string;
   icon: React.ReactNode;
   bgIcon?: LucideIcon;
-  items?: string[];
+  items?: (string | { label: string; href: string })[];
   variant?: 'light' | 'white';
   href?: string;
 }
 
 export const ServiceCard = ({ title, description, icon, bgIcon: BgIcon, items, variant = 'white', href }: ServiceCardProps) => {
+  const hasNestedLinks = items?.some(item => typeof item !== 'string');
+  const isOuterLink = href && !hasNestedLinks;
+
+  // Helper to wrap internal elements in Link if we can't wrap the whole card
+  const Wrapper = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+    if (href && hasNestedLinks) {
+      return (
+        <Link href={href} className={cn("inline-block", className)}>
+          {children}
+        </Link>
+      );
+    }
+    return <>{children}</>;
+  };
+
   const CardContent = (
     <motion.div
       whileHover={{ y: -8 }}
@@ -36,12 +51,16 @@ export const ServiceCard = ({ title, description, icon, bgIcon: BgIcon, items, v
       )}
 
       <div className="relative z-10 h-full flex flex-col space-y-6">
-        <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-          {icon}
-        </div>
+        <Wrapper>
+          <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+            {icon}
+          </div>
+        </Wrapper>
 
         <div className="space-y-4">
-          <h3 className="text-2xl font-bold text-dark group-hover:text-primary transition-colors">{title}</h3>
+          <Wrapper>
+            <h3 className="text-2xl font-bold text-dark group-hover:text-primary transition-colors">{title}</h3>
+          </Wrapper>
           {description && (
             <p className="text-text-muted text-base leading-relaxed">
               {description}
@@ -52,28 +71,36 @@ export const ServiceCard = ({ title, description, icon, bgIcon: BgIcon, items, v
         {items && items.length > 0 && (
           <ul className="space-y-4 flex-grow">
             {items.map((item, i) => (
-              <li key={i} className="flex items-start text-base text-text-muted">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 mr-3 flex-shrink-0" />
-                {item}
+              <li key={i} className="flex items-center text-base text-text-muted">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary mr-3 flex-shrink-0" />
+                {typeof item === 'string' ? (
+                  item
+                ) : (
+                  <Link href={item.href} className="hover:text-primary transition-colors no-underline">
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
         )}
 
         <div className="pt-4">
-          <div className="inline-flex items-center text-base font-bold text-dark group-hover:text-primary transition-all group/btn">
-            <span className="relative">
-              Learn More
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
-            </span>
-            <ArrowRight className="ml-2 group-hover/btn:translate-x-2 transition-transform" size={20} />
-          </div>
+          <Wrapper className="group/btn">
+            <div className="inline-flex items-center text-base font-bold text-dark group-hover:text-primary transition-all">
+              <span className="relative">
+                Learn More
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+              </span>
+              <ArrowRight className="ml-2 group-hover/btn:translate-x-2 transition-transform" size={20} />
+            </div>
+          </Wrapper>
         </div>
       </div>
     </motion.div>
   );
 
-  if (href) {
+  if (isOuterLink && href) {
     return (
       <Link href={href} className="block h-full">
         {CardContent}
