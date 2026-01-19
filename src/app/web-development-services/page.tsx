@@ -37,7 +37,7 @@ export default function WebDevelopmentServicesPage() {
               animate={{ opacity: 1, y: 0 }}
               className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
             >
-              Web Development Services
+              Web Development & AI Automation
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
