@@ -67,8 +67,15 @@ const DynamicBackground: React.FC = () => {
         let particles: Particle[] = [];
 
         const init = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            const rect = canvas.parentElement?.getBoundingClientRect();
+            if (rect) {
+                canvas.width = rect.width;
+                canvas.height = rect.height;
+            } else {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
             particles = [];
             for (let i = 0; i < particleCount; i++) {
                 particles.push(new Particle(canvas.width, canvas.height));

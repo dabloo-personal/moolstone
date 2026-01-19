@@ -36,9 +36,11 @@ export default function EcommerceServicesPage() {
               Innovating Marketplace Growth with robust, scalable, and high-performance solutions.
             </p>
             <div>
-              <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold border-none text-white">
-                Get a Quote
-              </Button>
+              <Link href="/contact">
+                <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold border-none text-white">
+                  Get a Quote
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -88,10 +90,16 @@ export default function EcommerceServicesPage() {
                     </li>
                   ))}
                 </ul>
-                <div className="pt-2 lg:pt-4">
+                <div className="pt-2 lg:pt-4 flex flex-wrap gap-10">
                   <Link href={`/services/${slug}`}>
                     <Button variant="outline" className="rounded-full px-6 py-5 lg:px-8 lg:py-6 text-sm lg:text-base group border-primary/20 hover:bg-primary/5 hover:text-primary hover:border-primary transition-all w-full sm:w-auto">
                       Explore {service.title}
+                      <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
+                    </Button>
+                  </Link>
+                  <Link href="/contact">
+                    <Button variant="outline" className="rounded-full px-6 py-5 lg:px-8 lg:py-6 text-sm lg:text-base group border-primary/20 hover:bg-primary/5 hover:text-primary hover:border-primary transition-all w-full sm:w-auto">
+                      Start Selling
                       <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
                     </Button>
                   </Link>
@@ -144,9 +152,11 @@ export default function EcommerceServicesPage() {
             </p>
           </div>
 
-          <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold shadow-xl shadow-primary/20">
-            Contact Us Today
-          </Button>
+          <Link href="/contact">
+            <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold shadow-xl shadow-primary/20">
+              Contact Us Today
+            </Button>
+          </Link>
         </div>
       </SectionWrapper>
     </>

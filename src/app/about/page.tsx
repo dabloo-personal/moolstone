@@ -12,6 +12,7 @@ import {
   Star
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AboutUsPage() {
   return (
@@ -179,9 +180,11 @@ export default function AboutUsPage() {
             <p className="text-gray-400 text-lg max-w-2xl px-6">
               Let&apos;s transform your idea into a rock-solid digital experience that moves your industry.
             </p>
-            <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold shadow-xl shadow-primary/25">
-              Connect Us
-            </Button>
+            <Link href="/contact">
+              <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold shadow-xl shadow-primary/25">
+                Connect Us
+              </Button>
+            </Link>
           </div>
 
           <div className="absolute right-0 bottom-0 top-0 w-1/3 pointer-events-none opacity-20">

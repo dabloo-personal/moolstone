@@ -37,7 +37,7 @@ export default function WebDevelopmentServicesPage() {
               animate={{ opacity: 1, y: 0 }}
               className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
             >
-              Web Development Services
+              Web Development & AI Automation
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -52,9 +52,11 @@ export default function WebDevelopmentServicesPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold">
-                Get a Quote
-              </Button>
+              <Link href="/contact">
+                <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold">
+                  Get a Quote
+                </Button>
+              </Link>
             </motion.div>
           </div>
         </div>
@@ -105,7 +107,7 @@ export default function WebDevelopmentServicesPage() {
                   ))}
                 </ul>
                 <div className="pt-2 lg:pt-4">
-                  <Link href={`#contact`}>
+                  <Link href="/contact">
                     <Button variant="outline" className="rounded-full px-6 py-5 lg:px-8 lg:py-6 text-sm lg:text-base group border-primary/20 hover:bg-primary/5 hover:text-primary hover:border-primary transition-all w-full sm:w-auto">
                       Start Project
                       <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
@@ -160,9 +162,11 @@ export default function WebDevelopmentServicesPage() {
             </p>
           </div>
 
-          <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold shadow-xl shadow-primary/20">
-            Contact Us Today
-          </Button>
+          <Link href="/contact">
+            <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold shadow-xl shadow-primary/20">
+              Contact Us Today
+            </Button>
+          </Link>
         </div>
       </SectionWrapper>
     </>
