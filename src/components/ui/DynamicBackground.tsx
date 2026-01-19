@@ -66,7 +66,7 @@ const DynamicBackground: React.FC = () => {
         let animationFrameId: number;
         let particles: Particle[] = [];
 
-        const init = () => {
+        const init = (resetParticles = true) => {
             const rect = canvas.parentElement?.getBoundingClientRect();
             if (rect) {
                 canvas.width = rect.width;
@@ -76,9 +76,11 @@ const DynamicBackground: React.FC = () => {
                 canvas.height = window.innerHeight;
             }
 
-            particles = [];
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle(canvas.width, canvas.height));
+            if (resetParticles || particles.length === 0) {
+                particles = [];
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle(canvas.width, canvas.height));
+                }
             }
         };
 
@@ -110,7 +112,7 @@ const DynamicBackground: React.FC = () => {
         };
 
         const handleResize = () => {
-            init();
+            init(false);
         };
 
         const handleMouseMove = (e: MouseEvent) => {

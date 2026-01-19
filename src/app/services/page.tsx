@@ -29,7 +29,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[90dvh] flex flex-col justify-center pt-24 pb-16 overflow-hidden bg-white text-center">
+      <section className="relative min-h-[90dvh] flex flex-col justify-center pt-24 pb-16 bg-white text-center">
         <DynamicBackground />
         {/* Animated Background Effect */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -77,13 +77,13 @@ export default function ServicesPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="relative z-10 max-w-7xl mx-auto px-6"
+          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6"
         >
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-5xl md:text-6xl font-bold text-dark mb-4"
+            className="text-4xl text-5xl md:text-6xl font-bold text-dark mb-4"
           >
             Our Services
           </motion.h1>
@@ -91,7 +91,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-text-muted text-lg md:text-xl mb-8 max-w-3xl mx-auto"
+            className="text-text-muted text-base md:text-xl mb-8 max-w-3xl mx-auto px-2"
           >
             We design, build, and scale digital products, intelligent systems, and high-growth marketplaces. <br className="hidden md:block" />
             From idea validation to long-term growth, we help businesses turn technology into measurable results.
@@ -111,7 +111,7 @@ export default function ServicesPage() {
                 Next-Gen Digital Solutions
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[1.1] tracking-tighter text-center lg:text-left">
+              <h1 className="text-2xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[1.1] tracking-tight sm:tracking-tighter text-center lg:text-left">
                 Build Your <br className="hidden md:block" />
                 <span className="text-orange-500">Future</span> With Us.
               </h1>
@@ -131,22 +131,39 @@ export default function ServicesPage() {
                 </div>
               </div>
 
-              {/* Horizontal Marquee (Restored) */}
-              <div className="w-full max-w-2xl mt-8 opacity-90 -mx-4 md:mx-0 mx-auto lg:mx-0 overflow-hidden">
-                <InfiniteScroll direction="left" speed={0.8} className="w-full py-4 overflow-visible">
-                  <div className="flex items-center gap-4 px-4 overflow-visible">
-                    <Link href="/web-development-services">
-                      <div className="bg-white/95 backdrop-blur-md border border-orange-100 px-6 py-3 rounded-full text-sm font-bold text-slate-800 hover:text-orange-600 hover:border-orange-500 transition-all shadow-md flex items-center whitespace-nowrap">
-                        Explore Solutions <span className="ml-2">→</span>
-                      </div>
-                    </Link>
-                    <Link href="/ecommerce-services">
-                      <div className="bg-white/95 backdrop-blur-md border border-orange-100 px-6 py-3 rounded-full text-sm font-bold text-slate-800 hover:text-orange-600 hover:border-orange-500 transition-all shadow-md flex items-center whitespace-nowrap">
-                        Explore Marketplace Services <span className="ml-2">→</span>
-                      </div>
-                    </Link>
-                  </div>
-                </InfiniteScroll>
+              {/* Hero Transitions / Call to Actions */}
+              <div className="w-full max-w-2xl mt-8 opacity-90 mx-auto lg:mx-0">
+                {/* Mobile: Stacked Buttons */}
+                <div className="flex flex-col gap-4 sm:hidden">
+                  <Link href="/web-development-services" className="w-full">
+                    <div className="bg-white/95 backdrop-blur-md border border-orange-100 px-6 py-4 rounded-3xl text-sm font-bold text-slate-800 shadow-md flex items-center justify-between">
+                      Explore Solutions <span className="text-orange-500">→</span>
+                    </div>
+                  </Link>
+                  <Link href="/ecommerce-services" className="w-full">
+                    <div className="bg-white/95 backdrop-blur-md border border-orange-100 px-6 py-4 rounded-3xl text-sm font-bold text-slate-800 shadow-md flex items-center justify-between">
+                      Explore Marketplace Services <span className="text-orange-500">→</span>
+                    </div>
+                  </Link>
+                </div>
+
+                {/* Tablet/Desktop: Horizontal Marquee */}
+                <div className="hidden sm:block overflow-hidden rounded-full">
+                  <InfiniteScroll direction="left" speed={0.8} className="w-full py-4">
+                    <div className="flex items-center gap-4 px-4">
+                      <Link href="/web-development-services">
+                        <div className="bg-white/95 backdrop-blur-md border border-orange-100 px-6 py-3 rounded-full text-sm font-bold text-slate-800 hover:text-orange-600 hover:border-orange-500 transition-all shadow-md flex items-center whitespace-nowrap">
+                          Explore Solutions <span className="ml-2">→</span>
+                        </div>
+                      </Link>
+                      <Link href="/ecommerce-services">
+                        <div className="bg-white/95 backdrop-blur-md border border-orange-100 px-6 py-3 rounded-full text-sm font-bold text-slate-800 hover:text-orange-600 hover:border-orange-500 transition-all shadow-md flex items-center whitespace-nowrap">
+                          Explore Marketplace Services <span className="ml-2">→</span>
+                        </div>
+                      </Link>
+                    </div>
+                  </InfiniteScroll>
+                </div>
               </div>
             </motion.div>
 
@@ -158,7 +175,7 @@ export default function ServicesPage() {
               className="flex justify-center relative w-full lg:w-auto"
             >
               {/* Main Card Graphic */}
-              <div className="relative w-full max-w-[280px] xs:max-w-xs sm:max-w-md lg:max-w-lg aspect-square rounded-[2rem] sm:rounded-[3rem] bg-slate-900 shadow-2xl overflow-hidden border-4 sm:border-8 border-white/10 group">
+              <div className="relative w-full max-w-[240px] xs:max-w-xs sm:max-w-md lg:max-w-lg aspect-square rounded-[2rem] sm:rounded-[3rem] bg-slate-900 shadow-2xl overflow-hidden border-4 sm:border-8 border-white/10 group">
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-orange-700 opacity-20 group-hover:opacity-40 transition-opacity" />
 
                 <div className="absolute inset-0 p-12 flex flex-col justify-between">
@@ -185,7 +202,7 @@ export default function ServicesPage() {
                 <motion.div
                   animate={{ y: [0, -20, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-1/4 -right-4 sm:-right-10 w-24 h-24 sm:w-32 sm:h-32 bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 flex flex-col justify-center items-center gap-1 sm:gap-2 border border-slate-50"
+                  className="hidden lg:flex absolute top-1/4 -right-10 w-32 h-32 bg-white rounded-3xl shadow-2xl p-6 flex-col justify-center items-center gap-2 border border-slate-50"
                 >
                   <div className="text-orange-500 font-black text-xl sm:text-2xl">100%</div>
                   <div className="text-slate-400 text-[8px] sm:text-[10px] font-bold uppercase tracking-widest text-center">Satisfaction</div>
@@ -194,7 +211,7 @@ export default function ServicesPage() {
                 <motion.div
                   animate={{ y: [0, 20, 0] }}
                   transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  className="absolute bottom-1/4 -left-4 sm:-left-10 w-28 h-16 sm:w-40 sm:h-24 bg-orange-500 rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 flex flex-col justify-center border-2 sm:border-4 border-white"
+                  className="hidden lg:flex absolute bottom-1/4 -left-10 w-40 h-24 bg-orange-500 rounded-3xl shadow-2xl p-6 flex-col justify-center border-4 border-white"
                 >
                   <div className="text-white font-black text-sm sm:text-lg italic tracking-tighter">PROJECTS</div>
                   <div className="w-full h-1 bg-white/30 rounded-full mt-1 sm:mt-2 overflow-hidden">
@@ -225,17 +242,17 @@ export default function ServicesPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white py-8 md:pr-16 space-y-6 flex flex-col h-[500px]"
+            className="bg-white py-8 md:pr-16 space-y-6 flex flex-col md:h-[500px]"
           >
             <div className="flex-shrink-0">
-              <h2 className="text-2xl md:text-3xl font-bold text-dark mb-3">Web Development & AI Automation</h2>
+              <h2 className="text-xl md:text-3xl font-bold text-dark mb-3">Web Development & AI Automation</h2>
               <p className="text-text-muted leading-relaxed text-sm md:text-base">
                 We design and engineer high-performance digital products using modern frameworks, scalable architectures, and intelligent automation.
               </p>
             </div>
 
             <div className="flex-grow relative overflow-hidden">
-              <InfiniteScroll direction="up" speed={0.5} className="h-[300px]">
+              <InfiniteScroll direction="up" speed={0.5} className="h-[250px] sm:h-[300px]">
                 {[
                   { name: "Full-Stack Web Development", slug: "full-stack-web-development" },
                   { name: "E-commerce & UI/UX Design", slug: "ecommerce-ui-ux-design" },
@@ -277,17 +294,17 @@ export default function ServicesPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-white py-8 md:pl-16 space-y-6 flex flex-col h-[500px]"
+            className="bg-white py-8 md:pl-16 space-y-6 flex flex-col md:h-[500px]"
           >
             <div className="flex-shrink-0">
-              <h2 className="text-2xl md:text-3xl font-bold text-dark mb-3">Ecommerce Services</h2>
+              <h2 className="text-xl md:text-3xl font-bold text-dark mb-3">Ecommerce Services</h2>
               <p className="text-text-muted leading-relaxed text-sm md:text-base">
                 End-to-end seller enablement across India’s top marketplaces, from onboarding to scale.
               </p>
             </div>
 
             <div className="flex-grow relative overflow-hidden">
-              <InfiniteScroll direction="up" speed={0.5} className="h-[300px]">
+              <InfiniteScroll direction="up" speed={0.5} className="h-[250px] sm:h-[300px]">
                 {[
                   { name: "Amazon Seller Services", slug: "amazon-seller-services" },
                   { name: "Flipkart Seller Services", slug: "flipkart-seller-services" },
