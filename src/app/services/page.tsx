@@ -1,107 +1,68 @@
 "use client";
 
-import { HeroSection } from "@/components/sections/HeroSection";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Button } from "@/components/ui/Button";
-import { ArrowRight, Star, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Play, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { InfiniteScroll } from "@/components/ui/InfiniteScroll";
+import DynamicBackground from "@/components/ui/DynamicBackground";
 
 export default function ServicesPage() {
   return (
     <>
       {/* Hero Section */}
-      {/* Hero Section */}
-      {/* Hero Section */}
-      <section className="relative pt-24 pb-16 overflow-hidden bg-white text-center">
-        {/* Animated Background Effect */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.08)_1px,transparent_1px)] bg-[length:24px_24px]" />
-          {[...Array(8)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute bg-primary/10 rounded-full blur-3xl mix-blend-multiply"
-              style={{
-                width: Math.random() * 400 + 200,
-                height: Math.random() * 400 + 200,
-                top: Math.random() * 100 + "%",
-                left: Math.random() * 100 + "%",
-              }}
-              animate={{
-                y: [0, Math.random() * 200 - 100],
-                x: [0, Math.random() * 200 - 100],
-                opacity: [0.2, 0.5, 0.2],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: Math.random() * 15 + 15,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-        </div>
+      <section className="relative min-h-screen flex items-center justify-center pt-20 pb-12 overflow-hidden bg-white">
+        <DynamicBackground />
 
-        {/* Sunburst Background Effect */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none opacity-10">
-          {[...Array(24)].map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1, rotate: 360 }}
-              transition={{ delay: i * 0.05, duration: 60, repeat: Infinity, ease: "linear" }}
-              className="absolute top-1/2 left-1/2 w-full h-[1px] bg-dark origin-left"
-              style={{ transform: `rotate(${i * 15}deg) translateX(0)` }}
-            />
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="relative z-10 max-w-4xl mx-auto px-6"
-        >
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-5xl md:text-6xl font-bold text-dark mb-4"
-          >
-            Our Services
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="text-text-muted text-lg md:text-xl mb-8 max-w-3xl mx-auto"
-          >
-            We design, build, and scale digital products, intelligent systems, and high-growth marketplaces. <br className="hidden md:block" />
-            From idea validation to long-term growth, we help businesses turn technology into measurable results.
-          </motion.p>
+        <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Text Content */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6 }}
-            className="flex flex-col items-center gap-6"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-8"
           >
-            <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-10 py-3 text-lg font-bold shadow-xl shadow-primary/25 z-20 relative">
-              Get a Free Consultation
-            </Button>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-50 border border-orange-100 text-orange-600 font-bold text-sm tracking-widest uppercase">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+              </span>
+              Next-Gen Digital Solutions
+            </div>
 
-            {/* Horizontal Marquee */}
-            <div className="w-full max-w-2xl mt-8 opacity-90">
-              <InfiniteScroll direction="left" speed={0.8} className="w-full py-4">
-                <div className="flex items-center gap-6 px-4">
+            <h1 className="text-5xl md:text-8xl font-black text-slate-900 leading-[1.1] tracking-tighter text-left">
+              Build Your <br />
+              <span className="text-orange-500">Future</span> With Us.
+            </h1>
+
+            <p className="text-slate-500 text-lg md:text-2xl leading-relaxed max-w-xl text-left">
+              We integrate high-end AI automation and world-class E-commerce strategies to transform your business into a market leader.
+            </p>
+
+            <div className="flex flex-col items-start gap-4 pt-4">
+              <div className="flex items-center gap-2 text-slate-600 font-medium text-sm md:text-base">
+                <CheckCircle2 size={18} className="text-orange-500 shrink-0" />
+                <span className="text-left">Top Rated Managed Services Provider</span>
+              </div>
+              <div className="flex items-center gap-2 text-slate-600 font-medium text-sm md:text-base">
+                <CheckCircle2 size={18} className="text-orange-500 shrink-0" />
+                <span className="text-left">24/7 Dedicated Operational Support</span>
+              </div>
+            </div>
+
+            {/* Horizontal Marquee (Restored) */}
+            <div className="w-full max-w-2xl mt-8 opacity-90 -mx-4 md:mx-0">
+              <InfiniteScroll direction="left" speed={0.8} className="w-full py-4 overflow-visible">
+                <div className="flex items-center gap-4 px-4 overflow-visible">
                   <Link href="/web-development-services">
-                    <div className="bg-white/80 backdrop-blur-sm border border-gray-200 px-6 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-primary hover:border-primary/30 transition-all shadow-sm flex items-center whitespace-nowrap">
+                    <div className="bg-white/95 backdrop-blur-md border border-orange-100 px-6 py-3 rounded-full text-sm font-bold text-slate-800 hover:text-orange-600 hover:border-orange-500 transition-all shadow-md flex items-center whitespace-nowrap">
                       Explore Solutions <span className="ml-2">→</span>
                     </div>
                   </Link>
                   <Link href="/ecommerce-services">
-                    <div className="bg-white/80 backdrop-blur-sm border border-gray-200 px-6 py-2 rounded-full text-sm font-semibold text-slate-700 hover:text-primary hover:border-primary/30 transition-all shadow-sm flex items-center whitespace-nowrap">
+                    <div className="bg-white/95 backdrop-blur-md border border-orange-100 px-6 py-3 rounded-full text-sm font-bold text-slate-800 hover:text-orange-600 hover:border-orange-500 transition-all shadow-md flex items-center whitespace-nowrap">
                       Explore Marketplace Services <span className="ml-2">→</span>
                     </div>
                   </Link>
@@ -109,7 +70,65 @@ export default function ServicesPage() {
               </InfiniteScroll>
             </div>
           </motion.div>
-        </motion.div>
+
+          {/* Abstract Graphic Element */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, rotate: 10 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="hidden lg:flex justify-center relative"
+          >
+            {/* Main Card Graphic */}
+            <div className="relative w-full max-w-md aspect-square rounded-[3rem] bg-slate-900 shadow-2xl overflow-hidden border-8 border-white/10 group">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-orange-700 opacity-20 group-hover:opacity-40 transition-opacity" />
+
+              <div className="absolute inset-0 p-12 flex flex-col justify-between">
+                <div className="flex justify-between items-start">
+                  <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center">
+                    <div className="w-8 h-8 rounded-full bg-orange-500 animate-pulse" />
+                  </div>
+                  <div className="text-white/40 text-sm font-mono tracking-widest uppercase">System_Active</div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="h-4 w-3/4 bg-white/20 rounded-full" />
+                  <div className="h-4 w-1/2 bg-white/20 rounded-full" />
+                  <div className="h-4 w-5/6 bg-white/20 rounded-full" />
+                </div>
+
+                <div className="flex justify-between items-end">
+                  <div className="text-4xl font-black text-white italic">50+</div>
+                  <div className="text-orange-400 text-sm font-bold uppercase tracking-tight">Active Sellers</div>
+                </div>
+              </div>
+
+              {/* Floating UI Elements */}
+              <motion.div
+                animate={{ y: [0, -20, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-1/4 -right-10 w-32 h-32 bg-white rounded-3xl shadow-2xl p-6 flex flex-col justify-center items-center gap-2 border border-slate-50"
+              >
+                <div className="text-orange-500 font-black text-2xl">100%</div>
+                <div className="text-slate-400 text-[10px] font-bold uppercase tracking-widest text-center">Satisfaction</div>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 20, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute bottom-1/4 -left-10 w-40 h-24 bg-orange-500 rounded-3xl shadow-2xl p-6 flex flex-col justify-center border-4 border-white"
+              >
+                <div className="text-white font-black text-lg italic tracking-tighter">PROJECTS</div>
+                <div className="w-full h-1 bg-white/30 rounded-full mt-2 overflow-hidden">
+                  <motion.div
+                    animate={{ x: [-100, 100] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                    className="w-1/2 h-full bg-white"
+                  />
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       <div className="max-w-7xl mx-auto px-6 h-px bg-gray-100" />
