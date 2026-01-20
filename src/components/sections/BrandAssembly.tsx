@@ -1,70 +1,98 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const BrandAssembly: React.FC = () => {
-    const part1 = "MOOL";
-    const part2 = "STONE";
-    const [letters, setLetters] = useState<{ char: string; chaos: string; color: string; delay: string }[]>([]);
-    const [isAnimating, setIsAnimating] = useState(false);
-    const containerRef = useRef<HTMLDivElement>(null);
+    const text = "MOOLSTONE";
+    const letters = text.split("");
+    const middleIndex = 4; // 'S'
 
-    useEffect(() => {
-        const combined = part1 + part2;
-        const setup = combined.split('').map((char, i) => {
-            const rx = (Math.random() - 0.5) * 800;
-            const ry = (Math.random() - 0.5) * 800;
-            const rz = (Math.random() - 0.5) * 1000;
-            const rotX = (Math.random() - 0.5) * 1000;
-            const rotY = (Math.random() - 0.5) * 1000;
+    const getInitialProps = (index: number) => {
+        if (index === middleIndex) {
+            return { y: -800, x: 0, opacity: 0 };
+        }
+        if (index < middleIndex) {
+            return { x: -1000, y: 0, opacity: 0 };
+        }
+        return { x: 1000, y: 0, opacity: 0 };
+    };
 
-            return {
-                char,
-                chaos: `translate3d(${rx}px, ${ry}px, ${rz}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`,
-                color: i < part1.length ? 'text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]' : 'text-[#ff6a00] drop-shadow-[0_0_15px_rgba(255,106,0,0.5)]',
-                delay: `${i * 0.1}s`
-            };
-        });
-        setLetters(setup);
+    // Stagger logic (3s total assembly):
+    // S: 0
+    // M,O,O,L: 0.2, 0.4, 0.6, 0.8
+    // T,O,N,E: 1.0, 1.2, 1.4, 1.6
+    // Duration: 1.2
+    // Max Time: 1.6 + 1.2 = 2.8s
+    const getDelay = (index: number) => {
+        if (index === middleIndex) return 0; // 'S' starts
 
-        const runCycle = () => {
-            setIsAnimating(false);
-            // Force reflow/reset
-            setTimeout(() => {
-                setIsAnimating(true);
-            }, 100);
-        };
+        // Left side: L, O, O, M (from near-middle to far-left)
+        if (index < middleIndex) {
+            return (middleIndex - 1 - index) * 0.3 + 0.3; // 4-1-3=0 -> 0.3s, 4-1-2=1 -> 0.6s, etc.
+        }
 
-        runCycle();
-        const interval = setInterval(runCycle, 6000);
-
-        return () => clearInterval(interval);
-    }, []);
+        // Right side: T, O, N, E (from near-middle to far-right)
+        return (index - 5) * 0.3 + 1.5; // Starts after M is done (1.2 + 0.3 = 1.5)
+    };
 
     return (
         <div className="flex flex-col items-center justify-center pointer-events-none w-full">
-            <div className="flex justify-center items-center [perspective:1000px] h-[120px]" ref={containerRef}>
-                {letters.map((l, i) => (
-                    <span
-                        key={i}
-                        className={`inline-block font-extrabold tracking-wider uppercase opacity-0 transition-opacity duration-300 ${l.color} ${isAnimating ? 'animate-[assemble_2s_cubic-bezier(0.16,1,0.3,1)_forwards]' : ''}`}
-                        style={{
-                            fontSize: 'clamp(3rem, 10vw, 6rem)',
-                            transform: isAnimating ? undefined : l.chaos,
-                            animationDelay: l.delay,
-                            opacity: isAnimating ? undefined : 0
-                        }}
-                    >
-                        {l.char}
-                    </span>
-                ))}
+            <div className="flex justify-center items-center h-[120px] overflow-visible">
+                {letters.map((char, i) => {
+                    const initial = getInitialProps(i);
+                    const delay = getDelay(i);
+
+                    return (
+                        <motion.span
+                            key={i}
+                            initial={initial}
+                            animate={{
+                                x: 0,
+                                y: 0,
+                                opacity: 1,
+                            }}
+                            transition={{
+                                duration: 1.2,
+                                delay: delay,
+                                ease: [0.16, 1, 0.3, 1],
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                                repeatDelay: 2, // Stay for 2s
+                            }}
+                            className={`inline-block font-extrabold tracking-wider uppercase ${i < 4 ? 'text-white' : 'text-[#ff6a00]'
+                                }`}
+                            style={{
+                                fontSize: 'clamp(2.5rem, 10vw, 6rem)',
+                                textShadow: i < 4
+                                    ? '0 0 10px rgba(255,255,255,0.2)'
+                                    : '0 0 15px rgba(255,106,0,0.5)'
+                            }}
+                        >
+                            {char}
+                        </motion.span>
+                    );
+                })}
             </div>
-            <p className="text-[clamp(1rem,2vw,1.3rem)] max-w-[600px] leading-[1.6] mt-[25px] text-white/60 tracking-[0.1em] opacity-0 animate-[fadeInHero_1s_ease_1.5s_forwards] text-center px-4">
+
+            <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 3, duration: 1 }}
+                className="text-[clamp(1rem,2vw,1.3rem)] max-w-[600px] leading-[1.6] mt-[25px] text-white/60 tracking-[0.1em] text-center px-4"
+            >
                 A solid foundation for your digital growth. Unshakeable technology, rooted in excellence.
-            </p>
-            <button className="mt-[40px] px-[40px] py-[15px] bg-transparent border border-[#ff6a00]/50 text-[#ff6a00] uppercase tracking-[0.2em] font-bold cursor-pointer pointer-events-auto transition-all duration-300 hover:bg-[#ff6a00]/10 hover:shadow-[0_0_20px_rgba(255,106,0,0.3)] hover:border-[#ff6a00] hover:-translate-y-[2px] opacity-0 animate-[fadeInHero_1s_ease_2s_forwards]">
+            </motion.p>
+
+            <motion.button
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 3.5, duration: 1 }}
+                className="mt-[40px] px-[40px] py-[15px] bg-transparent border border-[#ff6a00]/50 text-[#ff6a00] uppercase tracking-[0.2em] font-bold cursor-pointer pointer-events-auto transition-all duration-300 hover:bg-[#ff6a00]/10 hover:shadow-[0_0_20px_rgba(255,106,0,0.3)] hover:border-[#ff6a00] hover:-translate-y-[2px]"
+                onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+            >
                 Explore the Network
-            </button>
+            </motion.button>
         </div>
     );
 };
