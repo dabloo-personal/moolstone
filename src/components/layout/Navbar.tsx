@@ -32,14 +32,14 @@ export const Navbar = () => {
   return (
     <nav
       className={cn(
-        "sticky top-0 left-0 right-0 transition-all duration-300 px-6 lg:px-12 py-4 z-[100]",
+        "fixed top-0 left-0 right-0 transition-all duration-300 px-6 lg:px-12 py-2.5 z-[100]",
         isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-white"
       )}
     >
       <div className="max-w-screen-2xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-4">
-          <div className="relative w-16 h-16 md:w-20 md:h-20">
+          <div className="relative w-12 h-12 md:w-14 md:h-14">
             <Image
               src="/image copy.png"
               alt="MOOLSTONE Logo"

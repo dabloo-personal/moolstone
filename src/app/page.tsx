@@ -12,10 +12,7 @@ import { Layout, Bot, ShoppingCart } from "lucide-react";
 export default function Home() {
   return (
     <>
-      <HeroSection
-        title=""
-        subtitle=""
-      />
+      <HeroSection />
 
       <WhoWeAre />
 

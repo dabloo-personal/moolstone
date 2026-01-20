@@ -109,3 +109,29 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
+
+/* Hero Animations */
+@keyframes assemble {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotateX(0) rotateY(0);
+  }
+}
+
+@keyframes fadeInHero {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
