@@ -29,7 +29,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[90dvh] flex flex-col justify-center pt-24 pb-16 bg-white text-center">
+      <section className="relative min-h-[90dvh] flex flex-col justify-center pt-[96px] md:pt-[110px] pb-16 bg-white text-center">
         <DynamicBackground />
         {/* Animated Background Effect */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

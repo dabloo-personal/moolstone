@@ -3,172 +3,178 @@
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Button } from "@/components/ui/Button";
 import {
-  ArrowRight,
   CheckCircle2,
-  ChevronRight
+  ChevronRight,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { webServiceData } from "@/data/services";
-import { ExpandableText } from "@/components/ui/ExpandableText";
-import { motion } from "framer-motion";
-import webDevHeroImg from "../web-development-design.jpg";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 export default function WebDevelopmentServicesPage() {
-  const services = Object.values(webServiceData);
+  const serviceKeys = Object.keys(webServiceData);
+  const [activeTab, setActiveTab] = useState(serviceKeys[0]);
+
+  const activeService = webServiceData[activeTab];
 
   return (
-    <>
-      {/* Hero Section */}
-      <section className="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden bg-dark mx-4 my-4 rounded-[2.5rem]">
-        <Image
-          src={webDevHeroImg}
-          alt="Web Development Services"
-          fill
-          className="object-cover opacity-60"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-dark via-dark/80 to-transparent" />
+    <div className="bg-white min-h-screen pt-[64px] md:pt-[72px]">
+      {/* Services Explorer - Touching Navbar */}
+      <SectionWrapper id="explorer" className="py-2 md:py-6 lg:py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col lg:flex-row gap-4 lg:gap-10 items-start">
 
-        <div className="relative z-10 max-w-screen-2xl mx-auto px-6 lg:px-12 w-full">
-          <div className="max-w-2xl">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
-            >
-              Web Development & AI Automation
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-xl text-white/80 mb-10"
-            >
-              Innovating Digital Experiences with robust, scalable, and high-performance solutions.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              <Link href="/contact">
-                <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold">
-                  Get a Quote
-                </Button>
-              </Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Dynamic Service Sections */}
-      {services.map((service, index) => {
-        const isEven = index % 2 === 0;
-        // Take first 3 features for the list (or all, layout handles it)
-        const displayFeatures = service.features.map(f => typeof f === 'string' ? { title: f, description: "" } : f);
-
-        // Find slug by key
-        const slug = Object.keys(webServiceData).find(key => webServiceData[key] === service);
-
-        return (
-          <SectionWrapper key={index} id={slug} className={`bg-white ${index === 0 ? "pt-12 lg:pt-20" : "pt-0"} pb-12 lg:pb-20`}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center max-w-7xl mx-auto">
-              {/* Text Column */}
-              <div className={`space-y-6 lg:space-y-8 ${isEven ? "order-2 lg:order-1" : "order-2"}`}>
-                <div
-                  className="inline-flex items-center px-3 py-1 text-white text-[10px] font-bold rounded uppercase tracking-[0.2em]"
-                  style={{ backgroundColor: service.themeColor || "#000" }}
-                >
-                  Expertise
-                </div>
-                <h2 className="text-3xl lg:text-5xl font-bold text-dark leading-tight">
-                  {service.title}
-                </h2>
-
-                <ExpandableText
-                  text={service.description}
-                  className="text-gray-500 text-base lg:text-lg leading-relaxed"
-                />
-
-                <ul className="space-y-4">
-                  {displayFeatures.map((item, i) => (
-                    <li key={i} className="flex items-start space-x-3 lg:space-x-4">
-                      <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center text-primary mt-1 flex-shrink-0">
-                        <CheckCircle2 size={12} strokeWidth={3} />
-                      </div>
-                      <div className="space-y-1">
-                        <h4 className="font-bold text-dark text-sm lg:text-base">{item.title}</h4>
-                        {item.description && (
-                          <p className="text-gray-400 text-xs lg:text-sm line-clamp-1">{item.description}</p>
-                        )}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-                <div className="pt-2 lg:pt-4">
-                  <Link href="/contact">
-                    <Button variant="outline" className="rounded-full px-6 py-5 lg:px-8 lg:py-6 text-sm lg:text-base group border-primary/20 hover:bg-primary/5 hover:text-primary hover:border-primary transition-all w-full sm:w-auto">
-                      Start Project
-                      <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
-                    </Button>
-                  </Link>
-                </div>
+            {/* Left Column: Interactive Nav */}
+            <div className="w-full lg:w-1/4 flex flex-col space-y-1 lg:sticky lg:top-24">
+              <div className="mb-4 lg:mb-6">
+                <span className="text-primary font-extrabold text-[10px] uppercase tracking-widest block mb-1">Web Services</span>
+                <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-dark tracking-tight leading-none">Our Solutions</h1>
               </div>
 
-              {/* Image Column */}
-              <div className={`relative aspect-[4/3] rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl group ${isEven ? "order-1 lg:order-2" : "order-1"}`}>
-                {service.image ? (
-                  <Image
-                    src={service.image}
-                    alt={`${service.title} Visual`}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none"
-                  />
-                ) : (
-                  <div className={`w-full h-full bg-gradient-to-br ${service.gradientFrom} ${service.gradientTo} opacity-20`} />
-                )}
-                <div className="absolute inset-0 bg-black/5" />
+              <div className="flex lg:flex-col overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 gap-2 no-scrollbar">
+                {serviceKeys.map((key) => (
+                  <button
+                    key={key}
+                    onClick={() => setActiveTab(key)}
+                    className={`group flex-shrink-0 lg:flex-shrink flex items-center justify-between p-3 lg:p-4 rounded-xl transition-all duration-300 text-left border ${activeTab === key
+                      ? "bg-dark text-white border-dark shadow-lg lg:translate-x-1"
+                      : "bg-white text-dark border-gray-100 hover:border-primary/30 hover:bg-gray-50"
+                      }`}
+                  >
+                    <span className="font-bold text-xs lg:text-sm whitespace-nowrap lg:whitespace-normal">{webServiceData[key].title}</span>
+                    <ChevronRight
+                      size={14}
+                      className={`hidden lg:block transition-transform duration-300 ${activeTab === key ? "translate-x-1" : "opacity-0 group-hover:opacity-100"}`}
+                    />
+                  </button>
+                ))}
               </div>
             </div>
-          </SectionWrapper>
-        );
-      })}
 
-      {/* Stats Bar */}
-      <div className="bg-[#12110c] py-20 px-6 lg:px-12">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+            {/* Right Column: Content Area */}
+            <div className="w-full lg:w-3/4">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="bg-gray-50/50 rounded-[1.5rem] md:rounded-[2.5rem] p-5 md:p-8 lg:p-10 border border-gray-100"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                    <div className="space-y-4 md:space-y-6">
+                      <div
+                        className="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center text-white"
+                        style={{ backgroundColor: activeService.themeColor }}
+                      >
+                        {activeService.icon && <activeService.icon size={22} />}
+                      </div>
+
+                      <div className="space-y-2">
+                        <h2 className="text-xl md:text-3xl font-bold text-dark leading-tight">
+                          {activeService.title}
+                        </h2>
+                        <p className="text-gray-500 text-sm md:text-base leading-relaxed">
+                          {activeService.description}
+                        </p>
+                      </div>
+
+                      <div className="space-y-4">
+                        <h3 className="text-[10px] font-extrabold text-dark uppercase tracking-widest opacity-40">Core Features</h3>
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {activeService.features.map((item, i) => {
+                            const title = typeof item === 'string' ? item : item.title;
+                            return (
+                              <li key={i} className="flex items-start space-x-2 group">
+                                <div className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-0.5 flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                                  <CheckCircle2 size={10} strokeWidth={3} />
+                                </div>
+                                <span className="font-bold text-dark text-xs">{title}</span>
+                              </li>
+                            )
+                          })}
+                        </ul>
+                      </div>
+                    </div>
+
+                    {/* Image & Buttons Section */}
+                    <div className="space-y-4 md:space-y-6">
+                      <div className="relative aspect-video md:aspect-[4/3] rounded-2xl md:rounded-[2rem] overflow-hidden shadow-2xl border border-white">
+                        {activeService.image ? (
+                          <Image
+                            src={activeService.image}
+                            alt={activeService.title}
+                            fill
+                            className="object-cover"
+                          />
+                        ) : (
+                          <div
+                            className="w-full h-full bg-gradient-to-br opacity-20"
+                            style={{ backgroundImage: `linear-gradient(to bottom right, ${activeService.gradientFrom}, ${activeService.gradientTo})` }}
+                          />
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+                      </div>
+
+                      <div className="flex flex-wrap items-center gap-3 pt-2">
+                        <Link href="/contact" className="w-full sm:w-auto">
+                          <Button size="lg" className="w-full sm:w-auto rounded-full bg-dark hover:bg-black text-white group shadow-xl shadow-dark/10 flex items-center justify-center">
+                            Start Your Project
+                            <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+                          </Button>
+                        </Link>
+                        <Link href="/contact" className="w-full sm:w-auto">
+                          <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-full border-gray-200 hover:border-primary hover:bg-primary hover:text-white transition-all flex items-center justify-center">
+                            Check Pricing
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* Ultra Tight Stats Bar */}
+      <div className="bg-[#12110c] py-8 md:py-12 px-6 mx-4 rounded-[1.5rem] md:rounded-[2.5rem] mb-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 text-center">
           {[
             { value: "50+", label: "Web Projects" },
-            { value: "98%", label: "Client Retention" },
+            { value: "98%", label: "Retention" },
             { value: "3x", label: "Traffic Growth" },
             { value: "24/7", label: "Support" }
           ].map((stat, i) => (
-            <div key={i} className="space-y-2">
-              <div className="text-4xl md:text-5xl font-bold text-primary">{stat.value}</div>
-              <div className="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em]">{stat.label}</div>
+            <div key={i} className="space-y-1">
+              <div className="text-2xl md:text-4xl font-bold text-primary">{stat.value}</div>
+              <div className="text-[8px] md:text-[10px] font-bold text-white/40 uppercase tracking-widest">{stat.label}</div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Ready to Scale Section */}
-      <SectionWrapper className="bg-white">
-        <div className="max-w-screen-2xl mx-auto bg-[#fff9f4] rounded-[2rem] md:rounded-[3rem] p-10 md:p-24 text-center space-y-12">
-          <div className="space-y-6">
-            <h2 className="text-4xl md:text-6xl font-bold text-dark">Ready to Build?</h2>
-            <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-              Transform your digital presence with high-impact web solutions. Let&apos;s turn your vision into reality.
+      {/* Final Action Section - Compressed */}
+      <SectionWrapper className="bg-white pb-16 pt-0">
+        <div className="max-w-screen-2xl mx-auto bg-[#fff9f4] rounded-[1.5rem] md:rounded-[3rem] p-8 md:p-16 text-center">
+          <div className="max-w-2xl mx-auto space-y-4 md:space-y-6">
+            <h2 className="text-2xl md:text-5xl font-bold text-dark">Ready to Build Something Great?</h2>
+            <p className="text-gray-500 text-sm md:text-lg">
+              Transform your digital vision into a high-performance reality with our expert team.
             </p>
+            <div className="pt-2">
+              <Link href="/contact">
+                <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-10 py-6 text-lg font-bold shadow-xl shadow-primary/30">
+                  Connect with Us
+                </Button>
+              </Link>
+            </div>
           </div>
-
-          <Link href="/contact">
-            <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold shadow-xl shadow-primary/20">
-              Contact Us Today
-            </Button>
-          </Link>
         </div>
       </SectionWrapper>
-    </>
+    </div>
   );
 }

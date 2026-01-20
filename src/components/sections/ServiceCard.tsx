@@ -18,19 +18,17 @@ interface ServiceCardProps {
 
 export const ServiceCard = ({ title, description, icon, bgIcon: BgIcon, items, variant = 'white', href }: ServiceCardProps) => {
   const CardContent = (
-    <motion.div
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
+    <div
       className={cn(
         "h-full p-8 rounded-[2.5rem] border transition-all duration-300 relative overflow-hidden group",
         variant === 'white'
-          ? "bg-white border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-primary/10"
-          : "bg-gray-50 border-transparent hover:border-primary/20"
+          ? "bg-white border-gray-100 shadow-sm"
+          : "bg-gray-50 border-transparent"
       )}
     >
       {/* Background Icon */}
       {BgIcon && (
-        <div className="absolute -top-4 -right-4 flex flex-row text-gray-100 opacity-50 group-hover:scale-110 group-hover:text-primary/5 transition-all duration-700 z-0">
+        <div className="absolute -top-4 -right-4 flex flex-row text-gray-100 opacity-50 z-0">
           <BgIcon size={140} />
         </div>
       )}
@@ -79,17 +77,27 @@ export const ServiceCard = ({ title, description, icon, bgIcon: BgIcon, items, v
           </ul>
         )}
 
-        <div className="pt-4 relative z-10 pointer-events-none">
-          <div className="inline-flex items-center text-base font-bold text-dark group-hover:text-primary transition-all group/btn">
-            <span className="relative">
-              Learn More
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
-            </span>
-            <ArrowRight className="ml-2 group-hover/btn:translate-x-2 transition-transform" size={20} />
-          </div>
+        <div className="pt-4 relative z-20">
+          {href ? (
+            <Link href={href} className="inline-flex items-center text-base font-bold text-dark group-hover:text-primary transition-all group/btn">
+              <span className="relative">
+                Learn More
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+              </span>
+              <ArrowRight className="ml-2 group-hover/btn:translate-x-2 transition-transform" size={20} />
+            </Link>
+          ) : (
+            <div className="inline-flex items-center text-base font-bold text-dark group-hover:text-primary transition-all group/btn">
+              <span className="relative">
+                Learn More
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+              </span>
+              <ArrowRight className="ml-2 group-hover/btn:translate-x-2 transition-transform" size={20} />
+            </div>
+          )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 
   return CardContent;
