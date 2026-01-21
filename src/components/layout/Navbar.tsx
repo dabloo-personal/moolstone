@@ -57,7 +57,7 @@ export const Navbar = () => {
           </div>
           <div className="flex flex-col -space-y-0.5 sm:-space-y-1 max-w-[140px] xs:max-w-[180px] sm:max-w-none">
             <span className="text-lg sm:text-xl font-bold text-dark tracking-wider truncate">MOOLSTONE</span>
-            <span className="text-[7px] xs:text-[9px] sm:text-[10px] text-text-muted uppercase tracking-[0.1em] sm:tracking-[0.2em] leading-tight block">IT Services & Consulting Business</span>
+            <span className="text-[7px] xs:text-[9px] sm:text-[10px] text-text-muted uppercase tracking-[0.1em] sm:tracking-[0.2em] leading-tight block">IT Services & Business Consulting</span>
           </div>
         </Link>
 

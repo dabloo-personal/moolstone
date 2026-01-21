@@ -60,7 +60,7 @@ const BrandAssembly: React.FC = () => {
                                 ease: [0.16, 1, 0.3, 1],
                                 repeat: Infinity,
                                 repeatType: "reverse",
-                                repeatDelay: 2, // Stay for 2s
+                                repeatDelay: 4, // Stay for 4s
                             }}
                             className={`inline-block font-extrabold tracking-wider uppercase ${i < 4 ? 'text-white' : 'text-[#ff6a00]'
                                 }`}

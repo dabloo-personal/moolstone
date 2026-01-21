@@ -58,6 +58,9 @@ const countries = [
 export const ContactForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isCountryOpen, setIsCountryOpen] = useState(false);
+  const [isStateOpen, setIsStateOpen] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const [formData, setFormData] = useState({
@@ -184,9 +187,9 @@ export const ContactForm = () => {
                   id="name"
                   type="text"
                   required
-                  placeholder="John Doe"
+                  placeholder="Enter Your Name"
                   className={`w-full px-6 py-4 rounded-xl bg-white border ${errors.name ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-primary'
-                    } focus:ring-0 outline-none transition-all placeholder:text-gray-400 text-lg shadow-sm`}
+                    } focus:ring-0 outline-none transition-all placeholder:text-gray-300 placeholder:font-light text-lg shadow-sm`}
                   value={formData.name}
                   onChange={(e) => {
                     setFormData({ ...formData, name: e.target.value });
@@ -211,9 +214,9 @@ export const ContactForm = () => {
                   id="phone"
                   type="tel"
                   required
-                  placeholder="+91 98765 43210"
+                  placeholder="Enter Your Mobile Number"
                   className={`w-full px-6 py-4 rounded-xl bg-white border ${errors.phone ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-primary'
-                    } focus:ring-0 outline-none transition-all placeholder:text-gray-400 text-lg shadow-sm`}
+                    } focus:ring-0 outline-none transition-all placeholder:text-gray-300 placeholder:font-light text-lg shadow-sm`}
                   value={formData.phone}
                   onChange={(e) => {
                     setFormData({ ...formData, phone: e.target.value });
@@ -231,30 +234,57 @@ export const ContactForm = () => {
 
               {/* Country Field */}
               <div className="space-y-2">
-                <label htmlFor="country" className="block text-sm font-semibold text-dark">
+                <label className="block text-sm font-semibold text-dark">
                   Country <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
-                  <select
-                    id="country"
-                    required
-                    className={`w-full px-6 py-4 rounded-xl bg-white border ${errors.country ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-primary'
-                      } focus:ring-0 outline-none transition-all text-lg shadow-sm appearance-none cursor-pointer ${!formData.country ? 'text-gray-400' : 'text-dark'
-                      }`}
-                    value={formData.country}
-                    onChange={(e) => {
-                      setFormData({ ...formData, country: e.target.value, state: '' });
-                      if (errors.country) setErrors({ ...errors, country: '' });
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsCountryOpen(!isCountryOpen);
+                      setIsStateOpen(false);
+                      setIsOpen(false);
                     }}
-                    aria-invalid={!!errors.country}
-                    aria-describedby={errors.country ? "country-error" : undefined}
+                    className={`w-full px-6 py-4 rounded-xl bg-white border ${errors.country ? 'border-red-500' : 'border-gray-200 focus:border-primary'
+                      } text-left flex justify-between items-center transition-all text-lg shadow-sm ${!formData.country ? 'text-gray-400 font-light' : 'text-dark font-medium'
+                      }`}
                   >
-                    <option value="">Select Country</option>
-                    {countries.map((country) => (
-                      <option key={country.name} value={country.name}>{country.name}</option>
-                    ))}
-                  </select>
-                  <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={20} />
+                    <span>{formData.country || 'Select Country'}</span>
+                    <ChevronDown className={`text-gray-400 transition-transform ${isCountryOpen ? 'rotate-180' : ''}`} size={20} />
+                  </button>
+
+                  <AnimatePresence>
+                    {isCountryOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        className="absolute z-50 w-full mt-2 bg-white/95 backdrop-blur-md rounded-xl border border-gray-100 shadow-2xl overflow-hidden max-h-60 overflow-y-auto"
+                      >
+                        {countries.map((country) => (
+                          <button
+                            key={country.name}
+                            type="button"
+                            onClick={() => {
+                              setFormData({ ...formData, country: country.name, state: '' });
+                              setIsCountryOpen(false);
+                              if (errors.country) setErrors({ ...errors, country: '' });
+                            }}
+                            className="w-full px-6 py-4 text-left hover:bg-primary/5 transition-colors text-dark font-medium group"
+                          >
+                            <span
+                              style={{
+                                textShadow: '0 0 15px rgba(255,106,0,0.4)',
+                              }}
+                              className="group-hover:text-primary transition-colors"
+                            >
+                              {country.name}
+                            </span>
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
                 {errors.country && (
                   <p id="country-error" className="text-red-500 text-sm flex items-center gap-1">
@@ -265,31 +295,58 @@ export const ContactForm = () => {
 
               {/* State Field */}
               <div className="space-y-2">
-                <label htmlFor="state" className="block text-sm font-semibold text-dark">
+                <label className="block text-sm font-semibold text-dark">
                   State/Province <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
-                  <select
-                    id="state"
-                    required
+                  <button
+                    type="button"
                     disabled={!formData.country}
-                    className={`w-full px-6 py-4 rounded-xl bg-white border ${errors.state ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-primary'
-                      } focus:ring-0 outline-none transition-all text-lg shadow-sm appearance-none cursor-pointer ${!formData.state ? 'text-gray-400' : 'text-dark'
-                      } disabled:bg-gray-50 disabled:cursor-not-allowed`}
-                    value={formData.state}
-                    onChange={(e) => {
-                      setFormData({ ...formData, state: e.target.value });
-                      if (errors.state) setErrors({ ...errors, state: '' });
+                    onClick={() => {
+                      setIsStateOpen(!isStateOpen);
+                      setIsCountryOpen(false);
+                      setIsOpen(false);
                     }}
-                    aria-invalid={!!errors.state}
-                    aria-describedby={errors.state ? "state-error" : undefined}
+                    className={`w-full px-6 py-4 rounded-xl bg-white border ${errors.state ? 'border-red-500' : 'border-gray-200 focus:border-primary'
+                      } text-left flex justify-between items-center transition-all text-lg shadow-sm ${!formData.state ? 'text-gray-400 font-light' : 'text-dark font-medium'
+                      } disabled:bg-gray-50 disabled:cursor-not-allowed`}
                   >
-                    <option value="">Select State</option>
-                    {selectedCountry?.states.map((state) => (
-                      <option key={state} value={state}>{state}</option>
-                    ))}
-                  </select>
-                  <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={20} />
+                    <span>{formData.state || (formData.country ? 'Select State' : 'Select Country First')}</span>
+                    <ChevronDown className={`text-gray-400 transition-transform ${isStateOpen ? 'rotate-180' : ''}`} size={20} />
+                  </button>
+
+                  <AnimatePresence>
+                    {isStateOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        className="absolute z-50 w-full mt-2 bg-white/95 backdrop-blur-md rounded-xl border border-gray-100 shadow-2xl overflow-hidden max-h-60 overflow-y-auto"
+                      >
+                        {selectedCountry?.states.map((state) => (
+                          <button
+                            key={state}
+                            type="button"
+                            onClick={() => {
+                              setFormData({ ...formData, state: state });
+                              setIsStateOpen(false);
+                              if (errors.state) setErrors({ ...errors, state: '' });
+                            }}
+                            className="w-full px-6 py-4 text-left hover:bg-primary/5 transition-colors text-dark font-medium group"
+                          >
+                            <span
+                              style={{
+                                textShadow: '0 0 15px rgba(255,106,0,0.4)',
+                              }}
+                              className="group-hover:text-primary transition-colors"
+                            >
+                              {state}
+                            </span>
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
                 {errors.state && (
                   <p id="state-error" className="text-red-500 text-sm flex items-center gap-1">
@@ -299,37 +356,61 @@ export const ContactForm = () => {
               </div>
 
               {/* Interests Section */}
-              <div className={`bg-white rounded-2xl border-2 ${errors.interests ? 'border-red-500' : 'border-primary/20'} p-8 relative shadow-inner shadow-gray-50`}>
-                <div className="flex justify-between items-center mb-6">
-                  <span className="text-xl font-bold text-dark">I am interested in... <span className="text-red-500">*</span></span>
-                </div>
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-dark">
+                  I am interested in... <span className="text-red-500">*</span>
+                </label>
+                <div className="relative" id="interest-dropdown">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsOpen(!isOpen);
+                      setIsCountryOpen(false);
+                      setIsStateOpen(false);
+                    }}
+                    className={`w-full px-6 py-4 rounded-xl bg-white border ${errors.interests ? 'border-red-500' : 'border-gray-200 focus:border-primary'
+                      } text-left flex justify-between items-center transition-all text-lg shadow-sm ${formData.interests.length === 0 ? 'text-gray-300 font-light' : 'text-dark'
+                      }`}
+                  >
+                    <span>{formData.interests[0] || 'Select Interest'}</span>
+                    <ChevronDown className={`text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} size={20} />
+                  </button>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  {interestsList.map((interest) => (
-                    <button
-                      key={interest}
-                      type="button"
-                      onClick={() => {
-                        toggleInterest(interest);
-                        if (errors.interests) setErrors({ ...errors, interests: '' });
-                      }}
-                      className="flex items-center space-x-3 group"
-                    >
-                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${formData.interests.includes(interest)
-                        ? 'bg-primary border-primary text-white'
-                        : 'border-primary/30 text-transparent hover:border-primary/50'
-                        }`}>
-                        <CheckCircle2 size={14} strokeWidth={3} />
-                      </div>
-                      <span className={`text-lg font-medium transition-colors ${formData.interests.includes(interest) ? 'text-dark' : 'text-gray-400'
-                        }`}>
-                        {interest}
-                      </span>
-                    </button>
-                  ))}
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        className="absolute z-50 w-full mt-2 bg-white/95 backdrop-blur-md rounded-xl border border-gray-100 shadow-2xl overflow-hidden"
+                      >
+                        {interestsList.map((interest) => (
+                          <button
+                            key={interest}
+                            type="button"
+                            onClick={() => {
+                              setFormData({ ...formData, interests: [interest] });
+                              setIsOpen(false);
+                              if (errors.interests) setErrors({ ...errors, interests: '' });
+                            }}
+                            className="w-full px-6 py-4 text-left hover:bg-primary/5 transition-colors text-dark font-medium group"
+                          >
+                            <span
+                              style={{
+                                textShadow: '0 0 15px rgba(255,106,0,0.4)', // The requested "color blur"
+                              }}
+                              className="group-hover:text-primary transition-colors"
+                            >
+                              {interest}
+                            </span>
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
                 {errors.interests && (
-                  <p className="text-red-500 text-sm flex items-center gap-1 mt-4">
+                  <p id="interest-error" className="text-red-500 text-sm flex items-center gap-1">
                     <AlertCircle size={14} /> {errors.interests}
                   </p>
                 )}
