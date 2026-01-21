@@ -216,13 +216,13 @@ export const TestimonialMarquee = () => {
             >
                 {/* First set of testimonials */}
                 {testimonials.map((t, i) => (
-                    <div key={`original-${i}`} className="min-w-[350px] md:min-w-[400px]">
+                    <div key={`original-${i}`} className="w-[280px] h-[280px] md:w-auto md:h-auto md:min-w-[400px] flex-shrink-0">
                         <TestimonialCard {...t} />
                     </div>
                 ))}
                 {/* Second set for seamless loop */}
                 {testimonials.map((t, i) => (
-                    <div key={`duplicate-${i}`} className="min-w-[350px] md:min-w-[400px]">
+                    <div key={`duplicate-${i}`} className="w-[280px] h-[280px] md:w-auto md:h-auto md:min-w-[400px] flex-shrink-0">
                         <TestimonialCard {...t} />
                     </div>
                 ))}
