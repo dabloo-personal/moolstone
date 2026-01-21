@@ -29,11 +29,11 @@ export default function Home() {
             bgIcon={Layout}
             href="/web-development-services"
             items={[
-              { label: "Full-Stack Web Development", href: "/web-development-services#full-stack-web-development" },
-              { label: "E-commerce & UI/UX Design", href: "/web-development-services#ecommerce-ui-ux-design" },
-              { label: "AI & Social Media Automation", href: "/web-development-services#ai-social-media-automation" },
-              { label: "SEO & Google Maps Onboarding", href: "/web-development-services#seo-google-maps-onboarding" },
-              { label: "Site Migrations & Maintenance", href: "/web-development-services#site-migrations-maintenance" },
+              { label: "Full-Stack Web Development", href: "/services/full-stack-web-development" },
+              { label: "E-commerce & UI/UX Design", href: "/services/ecommerce-ui-ux-design" },
+              { label: "AI & Social Media Automation", href: "/services/ai-social-media-automation" },
+              { label: "SEO & Google Maps Onboarding", href: "/services/seo-google-maps-onboarding" },
+              { label: "Site Migrations & Maintenance", href: "/services/site-migrations-maintenance" },
             ]}
           />
           <ServiceCard
@@ -42,11 +42,11 @@ export default function Home() {
             bgIcon={ShoppingCart}
             href="/ecommerce-services"
             items={[
-              { label: "Amazon Seller Services", href: "/ecommerce-services#amazon-seller-services" },
-              { label: "Flipkart Seller Services", href: "/ecommerce-services#flipkart-seller-services" },
-              { label: "Alibaba Seller Services", href: "/ecommerce-services#alibaba-seller-services" },
-              { label: "Tata Cliq Seller Services", href: "/ecommerce-services#tata-cliq-seller-services" },
-              { label: "Reliance JioMart Seller Services", href: "/ecommerce-services#reliance-jiomart-seller-services" },
+              { label: "Amazon Seller Services", href: "/services/amazon-seller-services" },
+              { label: "Flipkart Seller Services", href: "/services/flipkart-seller-services" },
+              { label: "Alibaba Seller Services", href: "/services/alibaba-seller-services" },
+              { label: "Tata Cliq Seller Services", href: "/services/tata-cliq-seller-services" },
+              { label: "Reliance JioMart Seller Services", href: "/services/reliance-jiomart-seller-services" },
             ]}
           />
         </div>

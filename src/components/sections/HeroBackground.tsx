@@ -5,9 +5,18 @@ import * as THREE from 'three';
 
 const HeroBackground: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
+    const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+    const animationFrameRef = useRef<number>(0);
+    const isMountedRef = useRef<boolean>(true);
 
     useEffect(() => {
         if (!containerRef.current) return;
+        isMountedRef.current = true;
+
+        // Clear any existing content to prevent double-init
+        while (containerRef.current.firstChild) {
+            containerRef.current.removeChild(containerRef.current.firstChild);
+        }
 
         let scene: THREE.Scene,
             camera: THREE.PerspectiveCamera,
@@ -19,8 +28,8 @@ const HeroBackground: React.FC = () => {
         let mouseX = 0, mouseY = 0;
         let targetX = 0, targetY = 0;
 
-        const particleCount = 140;
-        const maxDistance = 160;
+        const particleCount = 120; // Slightly reduced for performance
+        const maxDistance = 150;
         const particlesData: { velocity: THREE.Vector3 }[] = [];
 
         const init = () => {
@@ -28,10 +37,15 @@ const HeroBackground: React.FC = () => {
             camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 2000);
             camera.position.z = 450;
 
-            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                alpha: true,
+                powerPreference: "high-performance"
+            });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Cap pixel ratio for performance
             renderer.setSize(window.innerWidth, window.innerHeight);
             containerRef.current?.appendChild(renderer.domElement);
+            rendererRef.current = renderer;
 
             const stoneGeometry = new THREE.BoxGeometry(60, 60, 60);
             const stoneMaterial = new THREE.MeshPhongMaterial({
@@ -61,9 +75,9 @@ const HeroBackground: React.FC = () => {
                 positions[i * 3 + 2] = Math.random() * 800 - 400;
                 particlesData.push({
                     velocity: new THREE.Vector3(
-                        -0.8 + Math.random() * 1.6,
-                        -0.8 + Math.random() * 1.6,
-                        -0.8 + Math.random() * 1.6
+                        -0.5 + Math.random(),
+                        -0.5 + Math.random(),
+                        -0.5 + Math.random()
                     )
                 });
             }
@@ -78,8 +92,11 @@ const HeroBackground: React.FC = () => {
             scene.add(particles);
 
             const lineGeometry = new THREE.BufferGeometry();
-            lineGeometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(particleCount * particleCount * 3), 3).setUsage(THREE.DynamicDrawUsage));
-            lineGeometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(particleCount * particleCount * 3), 3).setUsage(THREE.DynamicDrawUsage));
+            // Increased buffer size to prevent overflow (particleCount * particleCount * 2 vertices for safety)
+            const maxVertices = particleCount * particleCount * 2;
+            lineGeometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(maxVertices * 3), 3).setUsage(THREE.DynamicDrawUsage));
+            lineGeometry.setAttribute('color', new THREE.BufferAttribute(new Float32Array(maxVertices * 3), 3).setUsage(THREE.DynamicDrawUsage));
+
             lines = new THREE.LineSegments(lineGeometry, new THREE.LineBasicMaterial({
                 vertexColors: true,
                 blending: THREE.AdditiveBlending,
@@ -103,11 +120,24 @@ const HeroBackground: React.FC = () => {
                 renderer.setSize(window.innerWidth, window.innerHeight);
             };
 
-            document.addEventListener('mousemove', handleMouseMove);
+            window.addEventListener('mousemove', handleMouseMove);
             window.addEventListener('resize', handleResize);
 
+            let isVisible = true;
+            const observer = new IntersectionObserver(
+                ([entry]) => {
+                    isVisible = entry.isIntersecting;
+                },
+                { threshold: 0.1 }
+            );
+            if (containerRef.current) observer.observe(containerRef.current);
+
             const animate = () => {
-                const animationId = requestAnimationFrame(animate);
+                if (!isMountedRef.current) return;
+                animationFrameRef.current = requestAnimationFrame(animate);
+
+                if (!isVisible) return; // Skip rendering if not visible
+
                 mouseX += (targetX - mouseX) * 0.05;
                 mouseY += (targetY - mouseY) * 0.05;
                 camera.position.x += (mouseX - camera.position.x) * 0.05;
@@ -117,9 +147,10 @@ const HeroBackground: React.FC = () => {
                 stone.rotation.y += 0.005;
                 stone.rotation.x += 0.002;
 
-                const positions = (particles.geometry.attributes.position as THREE.BufferAttribute).array;
-                const linePos = (lines.geometry.attributes.position as THREE.BufferAttribute).array;
-                const lineCol = (lines.geometry.attributes.color as THREE.BufferAttribute).array;
+                const positions = (particles.geometry.attributes.position as THREE.BufferAttribute).array as Float32Array;
+                const linePos = (lines.geometry.attributes.position as THREE.BufferAttribute).array as Float32Array;
+                const lineCol = (lines.geometry.attributes.color as THREE.BufferAttribute).array as Float32Array;
+
                 let vertexIndex = 0;
                 let colorIndex = 0;
                 let lineCount = 0;
@@ -135,7 +166,7 @@ const HeroBackground: React.FC = () => {
 
                     const distToCore = Math.sqrt(positions[i * 3] ** 2 + positions[i * 3 + 1] ** 2 + positions[i * 3 + 2] ** 2);
                     if (distToCore < 220) {
-                        const alpha = 1.0 - distToCore / 220;
+                        const alpha = Math.max(0, 1.0 - distToCore / 220);
                         linePos[vertexIndex++] = positions[i * 3];
                         linePos[vertexIndex++] = positions[i * 3 + 1];
                         linePos[vertexIndex++] = positions[i * 3 + 2];
@@ -181,46 +212,48 @@ const HeroBackground: React.FC = () => {
                 lines.geometry.setDrawRange(0, lineCount * 2);
 
                 renderer.render(scene, camera);
-                return animationId;
             };
 
-            const animId = animate();
+            animate();
 
-            return { animId, handleMouseMove, handleResize };
-        };
+            return () => {
+                isMountedRef.current = false;
+                cancelAnimationFrame(animationFrameRef.current);
+                window.removeEventListener('mousemove', handleMouseMove);
+                window.removeEventListener('resize', handleResize);
+                observer.disconnect();
 
-        const result = init();
-
-        return () => {
-            if (result) {
-                cancelAnimationFrame(result.animId);
-                document.removeEventListener('mousemove', result.handleMouseMove);
-                window.removeEventListener('resize', result.handleResize);
-                if (containerRef.current && renderer.domElement) {
-                    containerRef.current.removeChild(renderer.domElement);
+                if (renderer) {
+                    renderer.dispose();
+                    if (renderer.domElement && renderer.domElement.parentNode) {
+                        renderer.domElement.parentNode.removeChild(renderer.domElement);
+                    }
                 }
+
                 scene.traverse((object) => {
-                    if (object instanceof THREE.Mesh) {
-                        object.geometry.dispose();
-                        if (Array.isArray(object.material)) {
-                            object.material.forEach((material) => material.dispose());
-                        } else {
-                            object.material.dispose();
+                    if (object instanceof THREE.Mesh || object instanceof THREE.Points || object instanceof THREE.LineSegments) {
+                        object.geometry?.dispose();
+                        if (object.material) {
+                            if (Array.isArray(object.material)) {
+                                object.material.forEach(m => m.dispose());
+                            } else {
+                                object.material.dispose();
+                            }
                         }
                     }
                 });
-                renderer.dispose();
-            }
+            };
+        };
+
+        const cleanupFunction = init();
+
+        return () => {
+            if (cleanupFunction) cleanupFunction();
         };
     }, []);
 
-    return (
-        <div
-            ref={containerRef}
-            className="absolute inset-0 z-0 pointer-events-none"
-            id="canvas-container"
-        />
-    );
+    return <div ref={containerRef} className="absolute inset-0 z-0 pointer-events-none" />;
 };
+
 
 export default HeroBackground;

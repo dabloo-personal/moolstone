@@ -65,6 +65,7 @@ const DynamicBackground: React.FC = () => {
 
         let animationFrameId: number;
         let particles: Particle[] = [];
+        let isMounted = true;
 
         const init = (resetParticles = true) => {
             const rect = canvas.parentElement?.getBoundingClientRect();
@@ -85,6 +86,7 @@ const DynamicBackground: React.FC = () => {
         };
 
         const animate = () => {
+            if (!isMounted) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             particles.forEach((p, index) => {
@@ -126,6 +128,7 @@ const DynamicBackground: React.FC = () => {
         animate();
 
         return () => {
+            isMounted = false;
             window.removeEventListener('resize', handleResize);
             window.removeEventListener('mousemove', handleMouseMove);
             cancelAnimationFrame(animationFrameId);

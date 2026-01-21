@@ -2,8 +2,10 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 const BrandAssembly: React.FC = () => {
+    const router = useRouter();
     const text = "MOOLSTONE";
     const letters = text.split("");
     const middleIndex = 4; // 'S'
@@ -89,7 +91,7 @@ const BrandAssembly: React.FC = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 3.5, duration: 1 }}
                 className="mt-[40px] px-[40px] py-[15px] bg-transparent border border-[#ff6a00]/50 text-[#ff6a00] uppercase tracking-[0.2em] font-bold cursor-pointer pointer-events-auto transition-all duration-300 hover:bg-[#ff6a00]/10 hover:shadow-[0_0_20px_rgba(255,106,0,0.3)] hover:border-[#ff6a00] hover:-translate-y-[2px]"
-                onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+                onClick={() => router.push('/services')}
             >
                 Explore the Network
             </motion.button>

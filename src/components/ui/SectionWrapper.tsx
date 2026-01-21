@@ -23,7 +23,7 @@ export const SectionWrapper = ({
     <section
       id={id}
       className={cn("py-20 px-6 lg:px-12 overflow-hidden", className)}
-      style={{ backgroundColor }}
+      style={backgroundColor !== "transparent" ? { backgroundColor } : {}}
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

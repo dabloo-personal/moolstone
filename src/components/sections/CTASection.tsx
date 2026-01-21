@@ -26,7 +26,7 @@ export const CTASection = () => {
           Let&apos;s transform your ideas into a world-class digital experience that inspires and performs.
         </p>
         <div className="flex justify-center">
-          <Link href="/contact">
+          <Link href="/contact#contact-form">
             <Button className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold shadow-xl shadow-primary/25 group">
               Connect Us
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={24} />

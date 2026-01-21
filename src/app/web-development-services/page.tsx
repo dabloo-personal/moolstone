@@ -11,6 +11,7 @@ import Link from "next/link";
 import { webServiceData } from "@/data/services";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { ExpandableText } from "@/components/ui/ExpandableText";
 
 export default function WebDevelopmentServicesPage() {
   const serviceKeys = Object.keys(webServiceData);
@@ -19,7 +20,7 @@ export default function WebDevelopmentServicesPage() {
   const activeService = webServiceData[activeTab];
 
   return (
-    <div className="bg-white min-h-screen pt-[64px] md:pt-[72px]">
+    <div className="bg-white min-h-screen pt-[90px] md:pt-[110px]">
       {/* Services Explorer - Touching Navbar */}
       <SectionWrapper id="explorer" className="py-2 md:py-6 lg:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -76,9 +77,10 @@ export default function WebDevelopmentServicesPage() {
                         <h2 className="text-xl md:text-3xl font-bold text-dark leading-tight">
                           {activeService.title}
                         </h2>
-                        <p className="text-gray-500 text-sm md:text-base leading-relaxed">
-                          {activeService.description}
-                        </p>
+                        <ExpandableText
+                          text={activeService.description}
+                          className="text-gray-500 text-sm md:text-base leading-relaxed"
+                        />
                       </div>
 
                       <div className="space-y-4">
@@ -119,7 +121,7 @@ export default function WebDevelopmentServicesPage() {
                       </div>
 
                       <div className="flex flex-wrap items-center gap-3 pt-2">
-                        <Link href="/contact" className="w-full sm:w-auto">
+                        <Link href={`/services/${activeTab}`} className="w-full sm:w-auto">
                           <Button size="lg" className="w-full sm:w-auto rounded-full bg-dark hover:bg-black text-white group shadow-xl shadow-dark/10 flex items-center justify-center">
                             Start Your Project
                             <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
@@ -166,7 +168,7 @@ export default function WebDevelopmentServicesPage() {
               Transform your digital vision into a high-performance reality with our expert team.
             </p>
             <div className="pt-2">
-              <Link href="/contact">
+              <Link href="/contact#contact-form">
                 <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-10 py-6 text-lg font-bold shadow-xl shadow-primary/30">
                   Connect with Us
                 </Button>

@@ -11,6 +11,7 @@ import Link from "next/link";
 import { serviceData } from "@/data/services";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { ExpandableText } from "@/components/ui/ExpandableText";
 
 export default function EcommerceServicesPage() {
   const serviceKeys = Object.keys(serviceData);
@@ -19,7 +20,7 @@ export default function EcommerceServicesPage() {
   const activeService = serviceData[activeTab];
 
   return (
-    <div className="bg-white min-h-screen pt-[64px] md:pt-[72px]">
+    <div className="bg-white min-h-screen pt-[90px] md:pt-[110px]">
       {/* Marketplace Hub - Touching Navbar */}
       <SectionWrapper id="marketplace-hub" className="py-2 md:py-6 lg:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -92,9 +93,10 @@ export default function EcommerceServicesPage() {
                         </h2>
                       </div>
 
-                      <p className="text-gray-500 text-sm md:text-base leading-relaxed">
-                        {activeService.description}
-                      </p>
+                      <ExpandableText
+                        text={activeService.description}
+                        className="text-gray-500 text-sm md:text-base leading-relaxed"
+                      />
 
                       <div className="space-y-4">
                         <h3 className="text-[10px] font-extrabold text-dark uppercase tracking-widest opacity-40">Core Highlights</h3>
@@ -134,7 +136,7 @@ export default function EcommerceServicesPage() {
                       </div>
 
                       <div className="flex flex-wrap items-center gap-3">
-                        <Link href="/contact" className="w-full sm:w-auto">
+                        <Link href={`/services/${activeTab}`} className="w-full sm:w-auto">
                           <Button size="lg" className="w-full sm:w-auto rounded-full bg-dark hover:bg-black text-white text-xs md:text-sm font-bold group shadow-xl shadow-dark/10 flex items-center justify-center">
                             Scale Your Brand
                             <ChevronRight className="ml-1 group-hover:translate-x-1 transition-transform" size={16} />
@@ -182,7 +184,7 @@ export default function EcommerceServicesPage() {
               Partner with the experts who have scaled 500+ global brands across every major marketplace.
             </p>
             <div className="pt-4">
-              <Link href="/contact">
+              <Link href="/contact#contact-form">
                 <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-lg font-bold shadow-xl shadow-primary/30">
                   Activate Growth Engine
                 </Button>
