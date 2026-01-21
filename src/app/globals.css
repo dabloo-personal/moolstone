@@ -135,3 +135,25 @@ select {
     opacity: 1;
   }
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 120s linear infinite;
+  display: flex;
+  /* Ensure flex behavior */
+  width: max-content;
+  /* Ensure container takes full width of children */
+}
+
+.group:hover .animate-marquee {
+  animation-play-state: paused;
+}

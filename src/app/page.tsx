@@ -5,6 +5,7 @@ import { WhoWeAre } from "@/components/sections/WhoWeAre";
 import { ServiceCard } from "@/components/sections/ServiceCard";
 import { FeaturesGrid } from "@/components/sections/FeaturesGrid";
 import { TestimonialCard } from "@/components/sections/TestimonialCard";
+import { TestimonialMarquee } from "@/components/sections/TestimonialMarquee";
 import { CTASection } from "@/components/sections/CTASection";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Layout, Bot, ShoppingCart } from "lucide-react";
@@ -64,22 +65,10 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <TestimonialCard
-            quote="Moolstone delivered a seamless and visually stunning website with precision and creativity. Their AI integrations changed our workflow."
-            author="Sarah J."
-            role="CEO, TechFlow"
-          />
-          <TestimonialCard
-            quote="Working with Moolstone was smooth from start to finish. They understood our needs and delivered a solution that exceeded our goals."
-            author="Alex M."
-            role="Founder, EcomGate"
-          />
-          <TestimonialCard
-            quote="Professionalism and timely delivery stood out. Their team felt more like partners than contractors during peak scaling periods."
-            author="M. Ross"
-            role="Ops Manager, LogistiX"
-          />
+        <div className="w-full relative">
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          <TestimonialMarquee />
         </div>
       </SectionWrapper>
 
