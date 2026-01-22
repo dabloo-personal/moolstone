@@ -69,19 +69,22 @@ export default function ContactPage() {
 
       {/* Detailed Addresses Section */}
       <SectionWrapper className="bg-dark py-12 pb-16 mx-4 rounded-3xl text-white">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight">Our Addresses</h2>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {[
             {
-              address: "CN601, Gally No. 3, Sultanpur, New Delhi - 110030",
+              address: "CN601, Gali No. 3, Sultanpur, New Delhi - 110030",
               icon: <Pin size={20} />
             },
             {
-              address: "3RD Floor, Naseeb Regency, Anishbad, Police Colony, Patna 800002",
+              address: "3RD Floor, Naseeb Regency, Anisabad, Police Colony, Patna 800002",
               icon: <Pin size={20} />
             },
             {
-              address: "B.Polytechnic, Near Vivah bhawan, Babudih, Dhanbad, Jharkhand 828130",
+              address: "B.Polytechnic, Near Vivah Bhawan, Babudih, Dhanbad, Jharkhand 828130",
               icon: <Pin size={20} />
             }
           ].map((item, i) => (
