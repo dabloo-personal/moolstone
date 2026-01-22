@@ -23,7 +23,7 @@ export const CTASection = () => {
           Ready to Build Something Amazing?
         </h2>
         <p className="text-text-muted text-lg md:text-xl mb-12 max-w-3xl mx-auto leading-relaxed">
-          Let&apos;s transform your ideas into a world-class digital experience that inspires and performs.
+          Elevating your ideas into world-class experiences that inspire action and deliver performance.
         </p>
         <div className="flex justify-center">
           <Link href="/contact#contact-form">

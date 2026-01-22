@@ -303,7 +303,7 @@ export const serviceData: Record<string, {
     }
 };
 
-import webDevHeroImg from "../app/web-development-design.jpg";
+
 import digitalGrowthHeroImg from "../app/digital-growth-infrastructure.jpg";
 import aiAutomationHeroImg from "../app/ai-automation-solutions.jpg";
 
@@ -332,7 +332,7 @@ export const webServiceData: Record<string, {
         gradientFrom: "#3b82f6",
         gradientTo: "#60a5fa",
         themeColor: "#3b82f6",
-        image: webDevHeroImg,
+        image: "/Fullstack.jpeg",
         imagePosition: "right"
     },
     "ecommerce-ui-ux-design": {
@@ -349,7 +349,7 @@ export const webServiceData: Record<string, {
         gradientFrom: "#ec4899",
         gradientTo: "#f472b6",
         themeColor: "#ec4899",
-        image: webDevHeroImg,
+        image: "/ecommerce-uiux.jpeg",
         imagePosition: "left"
     },
     "ai-social-media-automation": {
@@ -400,7 +400,7 @@ export const webServiceData: Record<string, {
         gradientFrom: "#f59e0b",
         gradientTo: "#fbbf24",
         themeColor: "#f59e0b",
-        image: digitalGrowthHeroImg,
+        image: "/site-maintenance.jpeg",
         imagePosition: "right"
     }
 };
