@@ -12,7 +12,7 @@ import Link from "next/link";
 import { webServiceData } from "@/data/services";
 import { ExpandableText } from "@/components/ui/ExpandableText";
 import { motion } from "framer-motion";
-import webDevHeroImg from "../Fullstack.jpeg";
+
 
 export default function WebDevelopmentServicesContent() {
     const services = Object.values(webServiceData);
@@ -22,7 +22,7 @@ export default function WebDevelopmentServicesContent() {
             {/* Hero Section */}
             <section className="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden bg-dark mx-4 my-4 rounded-[2.5rem]">
                 <Image
-                    src={webDevHeroImg}
+                    src="/Fullstack.jpeg"
                     alt="Web Development Services"
                     fill
                     className="object-cover opacity-60"
