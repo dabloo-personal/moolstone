@@ -139,7 +139,7 @@ export const ContactForm = () => {
   const selectedCountry = countries.find(c => c.name === formData.country);
 
   return (
-    <div className="bg-white rounded-[3rem] shadow-2xl shadow-gray-200/50 p-8 md:p-16 border border-gray-50 relative overflow-hidden">
+    <div className="bg-white rounded-[3rem] shadow-2xl shadow-gray-200/50 p-8 md:p-16 border border-gray-50 relative">
       <AnimatePresence mode="wait">
         {!isSubmitted ? (
           <motion.div
