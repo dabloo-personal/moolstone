@@ -12,7 +12,7 @@ import Link from "next/link";
 import { webServiceData } from "@/data/services";
 import { ExpandableText } from "@/components/ui/ExpandableText";
 import { motion } from "framer-motion";
-import webDevHeroImg from "../web-development-design.jpg";
+import webDevHeroImg from "../Fullstack.jpeg";
 
 export default function WebDevelopmentServicesContent() {
     const services = Object.values(webServiceData);

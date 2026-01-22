@@ -4,11 +4,12 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { WhoWeAre } from "@/components/sections/WhoWeAre";
 import { ServiceCard } from "@/components/sections/ServiceCard";
 import { FeaturesGrid } from "@/components/sections/FeaturesGrid";
-import { TestimonialCard } from "@/components/sections/TestimonialCard";
-import { TestimonialMarquee } from "@/components/sections/TestimonialMarquee";
 import { CTASection } from "@/components/sections/CTASection";
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { Layout, Bot, ShoppingCart } from "lucide-react";
+import { motion } from "framer-motion";
+import { TestimonialMarquee } from "@/components/sections/TestimonialMarquee";
+import { HomeClientStories } from "@/components/sections/HomeClientStories";
 
 export default function Home() {
   return (
@@ -55,22 +56,7 @@ export default function Home() {
 
       <FeaturesGrid />
 
-      <SectionWrapper id="testimonials" className="bg-white pb-0">
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl font-bold text-dark">What Our Clients Say</h2>
-          <div className="flex justify-center space-x-1">
-            {[...Array(5)].map((_, i) => (
-              <span key={i} className="text-primary text-xl">★</span>
-            ))}
-          </div>
-        </div>
-
-        <div className="w-full relative">
-          <div className="absolute left-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-          <TestimonialMarquee />
-        </div>
-      </SectionWrapper>
+      <HomeClientStories />
 
       <SectionWrapper className="pt-0 pb-24">
         <CTASection />

@@ -2,6 +2,7 @@
 
 import { SectionWrapper } from "@/components/ui/SectionWrapper";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { TestimonialMarquee } from "@/components/sections/TestimonialMarquee";
 import { Button } from "@/components/ui/Button";
 import { motion } from "framer-motion";
 import {
@@ -102,35 +103,20 @@ export default function ContactPage() {
         </div>
       </SectionWrapper>
 
-      {/* Reviews Section - Compact but complete */}
-      <SectionWrapper className="bg-white py-12">
+      {/* Reviews Section */}
+      <SectionWrapper className="bg-white py-12 pb-0">
         <div className="text-center mb-10 space-y-2">
-          <h2 className="text-2xl font-black text-dark tracking-tight">Client Success Stories</h2>
+          <h2 className="text-2xl font-black text-dark tracking-tight">What Our Clients Say</h2>
           <div className="flex justify-center space-x-1 text-primary">
             {[...Array(5)].map((_, i) => (
               <span key={i} className="text-sm">★</span>
             ))}
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {[
-            { quote: "Moolstone delivered a world-class website that exceeded our expectations with AI integrations.", author: "Sarah J.", role: "CEO, TechFlow" },
-            { quote: "Working with them was seamless. A solution that scaled perfectly with our rapid growth.", author: "Alex M.", role: "Founder, EcomGate" },
-            { quote: "Professionalism and timely delivery! Their team felt like partners than contractors.", author: "K. Ross", role: "Ops Manager" }
-          ].map((item, i) => (
-            <div key={i} className="p-6 rounded-2xl bg-gray-50 border border-gray-100 flex flex-col justify-between min-h-[160px]">
-              <p className="text-gray-500 text-xs italic leading-relaxed">&quot;{item.quote}&quot;</p>
-              <div className="flex items-center gap-3 mt-4">
-                <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold text-[10px]">
-                  {item.author[0]}
-                </div>
-                <div>
-                  <h5 className="font-bold text-dark text-xs">{item.author}</h5>
-                  <p className="text-gray-400 text-[10px] uppercase tracking-widest">{item.role}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="w-full relative">
+          <div className="absolute left-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          <TestimonialMarquee />
         </div>
       </SectionWrapper>
 
