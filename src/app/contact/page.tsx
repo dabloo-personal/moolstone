@@ -73,7 +73,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {[
             {
-              address: "Near sultanpur metro New Delhi",
+              address: "CN601, Gally No. 3, Sultanpur, New Delhi - 110030",
               icon: <Pin size={20} />
             },
             {
@@ -81,7 +81,7 @@ export default function ContactPage() {
               icon: <Pin size={20} />
             },
             {
-              address: "B.Polytechnic, Near Vivah bhawan, Babudih, Dhanbad, Jharkhand",
+              address: "B.Polytechnic, Near Vivah bhawan, Babudih, Dhanbad, Jharkhand 828130",
               icon: <Pin size={20} />
             }
           ].map((item, i) => (

@@ -49,7 +49,7 @@ export const Footer = () => {
             <ul className="space-y-2 text-[11px] text-gray-500">
               <li className="flex items-start space-x-2">
                 <MapPin className="text-primary mt-1 flex-shrink-0" size={12} />
-                <span className="leading-tight opacity-60 text-[10px]">Near sultanpur metro New Delhi</span>
+                <span className="leading-tight opacity-60 text-[10px]">CN601, Gally No. 3, Sultanpur, New Delhi - 110030</span>
               </li>
               <li className="flex items-start space-x-2">
                 <MapPin className="text-primary mt-1 flex-shrink-0" size={12} />
@@ -57,7 +57,7 @@ export const Footer = () => {
               </li>
               <li className="flex items-start space-x-2">
                 <MapPin className="text-primary mt-1 flex-shrink-0" size={12} />
-                <span className="leading-tight opacity-60 text-[10px]">B.Polytechnic, Near Vivah bhawan, Babudih, Dhanbad, Jharkhand</span>
+                <span className="leading-tight opacity-60 text-[10px]">B.Polytechnic, Near Vivah bhawan, Babudih, Dhanbad, Jharkhand 828130</span>
               </li>
               <li className="flex items-center space-x-2 hover:text-primary transition-colors pt-1">
                 <Phone className="text-primary" size={12} />
