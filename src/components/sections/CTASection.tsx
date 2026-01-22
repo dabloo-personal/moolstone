@@ -20,15 +20,15 @@ export const CTASection = () => {
         className="relative z-10"
       >
         <h2 className="text-4xl md:text-6xl font-bold text-dark mb-12 leading-tight">
-          Ready to Build Something Amazing?
+          Let’s Bring Your Vision to Life
         </h2>
         <p className="text-text-muted text-lg md:text-xl mb-12 max-w-3xl mx-auto leading-relaxed">
-          Elevating your ideas into world-class experiences that inspire action and deliver performance.
+          Transforming bold ideas into digital excellence that drives results and scales your business.
         </p>
         <div className="flex justify-center">
           <Link href="/contact#contact-form">
             <Button className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold shadow-xl shadow-primary/25 group">
-              Connect Us
+              Contact Us
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={24} />
             </Button>
           </Link>

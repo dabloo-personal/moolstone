@@ -7,7 +7,7 @@ export const HomeClientStories = () => {
     return (
         <SectionWrapper className="bg-white py-12 pb-20">
             <div className="text-center mb-10 space-y-2">
-                <h2 className="text-2xl md:text-4xl font-black text-dark tracking-tight">Client Success Stories</h2>
+                <h2 className="text-2xl md:text-4xl font-black text-dark tracking-tight">What Our Clients Say</h2>
                 <div className="flex justify-center space-x-1 text-primary">
                     {[...Array(5)].map((_, i) => (
                         <span key={i} className="text-sm md:text-xl">★</span>
@@ -18,17 +18,17 @@ export const HomeClientStories = () => {
                 {[
                     {
                         quote: "Moolstone delivered a world-class website that exceeded our expectations with AI integrations.",
-                        author: "Sarah J.",
+                        author: "Priya Sharma",
                         role: "Mumbai, Maharashtra"
                     },
                     {
                         quote: "Working with them was seamless. A solution that scaled perfectly with our rapid growth.",
-                        author: "Alex M.",
+                        author: "Rahul Verma",
                         role: "Bangalore, Karnataka"
                     },
                     {
                         quote: "Professionalism and timely delivery! Their team felt like partners than contractors.",
-                        author: "K. Ross",
+                        author: "Amit Patel",
                         role: "Delhi, India"
                     }
                 ].map((item, i) => (

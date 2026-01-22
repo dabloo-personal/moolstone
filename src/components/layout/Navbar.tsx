@@ -114,7 +114,7 @@ export const Navbar = () => {
           ))}
           <Link href="/contact#contact-form">
             <Button size="sm" className="rounded-full bg-primary hover:bg-primary-dark px-6">
-              Connect Us
+              Contact Us
             </Button>
           </Link>
         </div>
@@ -170,7 +170,7 @@ export const Navbar = () => {
                 </div>
               ))}
               <Link href="/contact#contact-form" onClick={() => setIsOpen(false)}>
-                <Button className="w-full rounded-full">Connect Us</Button>
+                <Button className="w-full rounded-full">Contact Us</Button>
               </Link>
             </div>
           </motion.div>
