@@ -69,25 +69,20 @@ export default function ContactPage() {
 
       {/* Detailed Addresses Section */}
       <SectionWrapper className="bg-dark py-12 pb-16 mx-4 rounded-3xl text-white">
-        <div className="text-center mb-10 space-y-2">
-          <h2 className="text-xl font-bold uppercase tracking-[0.3em] text-primary/80">Our Addresses</h2>
-        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {[
             {
-              title: "Moolstone Headquarters",
-              address: "12/3 Chanal Street. Store. ADR. 8900 32 to Blue Street",
+              address: "Near sultanpur metro New Delhi",
               icon: <Pin size={20} />
             },
             {
-              title: "Innovation Hub",
-              address: "786 / Tech Tech. Business. Lake. UK. Near Riverside",
-              icon: <Settings size={20} />
+              address: "3RD Floor, Naseeb Regency, Anishbad, Police Colony, Patna 800002",
+              icon: <Pin size={20} />
             },
             {
-              title: "UK Headquarters",
-              address: "900 123 Avenue. Lagos, Office 02. Palms and Best",
-              icon: <Layout size={20} />
+              address: "B.Polytechnic, Near Vivah bhawan, Babudih, Dhanbad, Jharkhand",
+              icon: <Pin size={20} />
             }
           ].map((item, i) => (
             <div key={i} className="flex gap-4 items-start p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/30 transition-colors">
@@ -95,7 +90,6 @@ export default function ContactPage() {
                 {item.icon}
               </div>
               <div className="space-y-1">
-                <h4 className="text-[11px] font-bold uppercase tracking-widest text-primary mb-1">{item.title}</h4>
                 <p className="text-white/80 text-[12px] leading-relaxed font-medium">{item.address}</p>
               </div>
             </div>
@@ -104,9 +98,9 @@ export default function ContactPage() {
       </SectionWrapper>
 
       {/* Reviews Section */}
-      <SectionWrapper className="bg-white py-12 pb-0">
+      < SectionWrapper className="bg-white py-12 pb-0" >
         <div className="text-center mb-10 space-y-2">
-          <h2 className="text-2xl font-black text-dark tracking-tight">What Our Clients Say</h2>
+          <h2 className="text-2xl font-black text-dark tracking-tight">Client Success Stories</h2>
           <div className="flex justify-center space-x-1 text-primary">
             {[...Array(5)].map((_, i) => (
               <span key={i} className="text-sm">★</span>
@@ -118,10 +112,10 @@ export default function ContactPage() {
           <div className="absolute right-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
           <TestimonialMarquee />
         </div>
-      </SectionWrapper>
+      </SectionWrapper >
 
       {/* CTA Section - Consistent Branding */}
-      <SectionWrapper className="bg-white py-12 pb-16">
+      < SectionWrapper className="bg-white py-12 pb-16" >
         <div className="max-w-4xl mx-auto bg-dark rounded-[2rem] p-10 text-center relative overflow-hidden">
           <div className="relative z-10 space-y-6">
             <h2 className="text-2xl md:text-4xl font-black text-white tracking-tight">Ready to Transform Your Future?</h2>
@@ -129,11 +123,11 @@ export default function ContactPage() {
               Let&apos;s build your unshakeable digital infrastructure. Reach out today and move your industry forward.
             </p>
             <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-10 py-5 text-base font-bold shadow-lg shadow-primary/20 border-none transition-all hover:-translate-y-1">
-              Connect Us
+              Contact Us
             </Button>
           </div>
         </div>
-      </SectionWrapper>
+      </SectionWrapper >
     </>
   );
 }

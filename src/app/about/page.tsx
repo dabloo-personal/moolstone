@@ -151,7 +151,7 @@ export default function AboutUsPage() {
             </p>
             <Link href="/contact#contact-form">
               <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-10 py-6 text-base font-bold shadow-lg shadow-primary/20 border-none transition-all hover:-translate-y-1">
-                Connect Us
+                Contact Us
               </Button>
             </Link>
           </div>
