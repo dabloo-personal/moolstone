@@ -48,21 +48,16 @@ export const Footer = () => {
             <h4 className="text-[9px] font-bold uppercase tracking-[0.2em] mb-3 text-gray-400">Contact</h4>
             <ul className="space-y-2 text-[11px] text-gray-500">
               <li className="flex items-start space-x-2">
-                <MapPin className="text-primary mt-1" size={12} />
-                <div className="flex flex-col gap-2">
-                  <div>
-                    <span className="font-bold text-white/80 block text-[9px] uppercase tracking-wider">Headquarters</span>
-                    <span className="leading-tight opacity-60 text-[10px]">12/3 Chanal Street. Store. ADR. 8900 32 to Blue Street</span>
-                  </div>
-                  <div>
-                    <span className="font-bold text-white/80 block text-[9px] uppercase tracking-wider">Innovation Hub</span>
-                    <span className="leading-tight opacity-60 text-[10px]">786 / Tech Tech. Business. Lake. UK. Near Riverside</span>
-                  </div>
-                  <div>
-                    <span className="font-bold text-white/80 block text-[9px] uppercase tracking-wider">UK Office</span>
-                    <span className="leading-tight opacity-60 text-[10px]">900 123 Avenue. Lagos, Office 02. Palms and Best</span>
-                  </div>
-                </div>
+                <MapPin className="text-primary mt-1 flex-shrink-0" size={12} />
+                <span className="leading-tight opacity-60 text-[10px]">Near sultanpur metro New Delhi</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <MapPin className="text-primary mt-1 flex-shrink-0" size={12} />
+                <span className="leading-tight opacity-60 text-[10px]">3RD Floor, Naseeb Regency, Anishbad, Police Colony, Patna 800002</span>
+              </li>
+              <li className="flex items-start space-x-2">
+                <MapPin className="text-primary mt-1 flex-shrink-0" size={12} />
+                <span className="leading-tight opacity-60 text-[10px]">B.Polytechnic, Near Vivah bhawan, Babudih, Dhanbad, Jharkhand</span>
               </li>
               <li className="flex items-center space-x-2 hover:text-primary transition-colors pt-1">
                 <Phone className="text-primary" size={12} />
