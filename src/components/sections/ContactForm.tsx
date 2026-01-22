@@ -42,8 +42,16 @@ export const ContactForm = () => {
   const interestsList = [
     'Amazon Seller Services',
     'Flipkart Seller Services',
-    'Web Development',
+    'Alibaba Seller Services',
+    'Blinkit Seller Services',
+    'Meesho Seller Services',
+    'Zomato Seller Services',
+    'Other Seller Services',
+    'Website Development',
     'AI Automation',
+    'Graphics Design',
+    'Website Modification, Migration & Maintenance',
+    'SEO & Google Maps Onboarding',
     'Other'
   ];
 
@@ -350,7 +358,7 @@ export const ContactForm = () => {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="absolute z-50 w-full mt-2 bg-white/95 backdrop-blur-md rounded-xl border border-gray-100 shadow-2xl overflow-hidden"
+                        className="absolute z-50 w-full mt-2 bg-white/95 backdrop-blur-md rounded-xl border border-gray-100 shadow-2xl overflow-hidden max-h-60 overflow-y-auto"
                       >
                         {interestsList.map((interest) => (
                           <button
