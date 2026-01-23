@@ -12,7 +12,7 @@ export const Footer = () => {
           <div className="space-y-3">
             <div className="flex items-center space-x-3">
               <div className="relative w-5 h-5">
-                <Image src="/image copy.png" alt="MOOLSTONE Logo" fill className="object-contain" />
+                <Image src="/moolstone-logo.png" alt="MOOLSTONE Logo" fill className="object-contain" />
               </div>
               <span className="text-base font-bold tracking-wider">MOOLSTONE</span>
             </div>
@@ -65,7 +65,7 @@ export const Footer = () => {
               </li>
               <li className="flex items-center space-x-2 hover:text-primary transition-colors">
                 <Mail className="text-primary" size={12} />
-                <a href="mailto:mool@moolstone.com">mool@moolstone.com</a>
+                <a href="mailto:info@moolstone.com">info@moolstone.com</a>
               </li>
             </ul>
           </div>

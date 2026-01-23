@@ -417,8 +417,8 @@ export const ContactForm = () => {
               </Button>
 
               <div className="text-center pt-4">
-                <Link href="mailto:themoolstone.services@gmail.com" className="text-blue-500 hover:text-blue-600 font-medium underline text-sm">
-                  themoolstone.services@gmail.com
+                <Link href="mailto:info@moolstone.com" className="text-blue-500 hover:text-blue-600 font-medium underline text-sm">
+                  info@moolstone.com
                 </Link>
               </div>
             </form>
