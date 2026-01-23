@@ -94,7 +94,7 @@ export default function ServiceDetailPage() {
                             transition={{ delay: 0.3 }}
                             className="flex flex-wrap gap-3 pt-1"
                         >
-                            <Link href="/contact">
+                            <Link href="/contact#contact-form">
                                 <Button size="sm" className="rounded-full bg-primary hover:bg-primary-dark px-6 py-4 text-xs font-bold shadow-xl shadow-primary/20 text-white border-none group">
                                     Book a Strategy Call
                                     <ArrowRight className="ml-1 group-hover:translate-x-1 transition-transform" size={14} />
@@ -207,7 +207,7 @@ export default function ServiceDetailPage() {
                     </div>
 
                     <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-                        <Link href="/contact" className="w-full sm:w-auto">
+                        <Link href="/contact#contact-form" className="w-full sm:w-auto">
                             <Button size="sm" className="w-full sm:w-auto rounded-full bg-primary hover:bg-primary-dark px-8 py-5 text-sm font-bold shadow-lg shadow-primary/20 text-white border-none transition-all hover:-translate-y-1">
                                 Get Started Now
                             </Button>

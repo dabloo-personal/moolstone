@@ -29,6 +29,16 @@ export const Navbar = () => {
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const pathname = usePathname();
 
+  const handleSamePageScroll = (href: string) => {
+    // If the link has a hash, we let the default behavior happen (it will scroll to the ID)
+    if (href.includes('#')) return;
+
+    const path = href.split('?')[0];
+    if (pathname === path) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -46,7 +56,7 @@ export const Navbar = () => {
     >
       <div className="max-w-screen-2xl mx-auto flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-4">
+        <Link href="/" className="flex items-center space-x-4" onClick={() => handleSamePageScroll('/')}>
           <div className="relative w-12 h-12 md:w-14 md:h-14">
             <Image
               src="/moolstone-logo.png"
@@ -72,7 +82,10 @@ export const Navbar = () => {
             >
               <Link
                 href={link.href}
-                onClick={() => setHoveredLink(null)}
+                onClick={() => {
+                  setHoveredLink(null);
+                  handleSamePageScroll(link.href);
+                }}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary py-4",
                   pathname === link.href || (link.subLinks && link.subLinks.some(s => pathname === s.href))
@@ -97,7 +110,10 @@ export const Navbar = () => {
                         <Link
                           key={sub.href}
                           href={sub.href}
-                          onClick={() => setHoveredLink(null)}
+                          onClick={() => {
+                            setHoveredLink(null);
+                            handleSamePageScroll(sub.href);
+                          }}
                           className={cn(
                             "block px-4 py-2.5 text-sm transition-colors hover:text-primary",
                             pathname === sub.href ? "text-primary" : "text-text-main"
@@ -112,7 +128,7 @@ export const Navbar = () => {
               )}
             </div>
           ))}
-          <Link href="/contact#contact-form">
+          <Link href="/contact#contact-form" onClick={() => handleSamePageScroll('/contact')}>
             <Button size="sm" className="rounded-full bg-primary hover:bg-primary-dark px-6">
               Contact Us
             </Button>
@@ -142,7 +158,10 @@ export const Navbar = () => {
                 <div key={link.href} className="flex flex-col space-y-2">
                   <Link
                     href={link.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => {
+                      setIsOpen(false);
+                      handleSamePageScroll(link.href);
+                    }}
                     className={cn(
                       "text-lg font-medium",
                       pathname === link.href ? "text-primary" : "text-text-main"
@@ -156,7 +175,10 @@ export const Navbar = () => {
                         <Link
                           key={sub.href}
                           href={sub.href}
-                          onClick={() => setIsOpen(false)}
+                          onClick={() => {
+                            setIsOpen(false);
+                            handleSamePageScroll(sub.href);
+                          }}
                           className={cn(
                             "text-base",
                             pathname === sub.href ? "text-primary" : "text-text-muted"
@@ -169,7 +191,13 @@ export const Navbar = () => {
                   )}
                 </div>
               ))}
-              <Link href="/contact#contact-form" onClick={() => setIsOpen(false)}>
+              <Link
+                href="/contact#contact-form"
+                onClick={() => {
+                  setIsOpen(false);
+                  handleSamePageScroll('/contact');
+                }}
+              >
                 <Button className="w-full rounded-full">Contact Us</Button>
               </Link>
             </div>

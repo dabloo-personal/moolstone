@@ -125,9 +125,22 @@ export default function ContactPage() {
             <p className="text-white/40 text-sm max-w-xl mx-auto">
               Let&apos;s build your unshakeable digital infrastructure. Reach out today and move your industry forward.
             </p>
-            <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-10 py-5 text-base font-bold shadow-lg shadow-primary/20 border-none transition-all hover:-translate-y-1">
-              Contact Us
-            </Button>
+            <Link
+              href="#contact-form"
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.getElementById('contact-form');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                  // Update URL without jump
+                  window.history.pushState(null, '', '#contact-form');
+                }
+              }}
+            >
+              <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-10 py-5 text-base font-bold shadow-lg shadow-primary/20 border-none transition-all hover:-translate-y-1">
+                Contact Us
+              </Button>
+            </Link>
           </div>
         </div>
       </SectionWrapper >

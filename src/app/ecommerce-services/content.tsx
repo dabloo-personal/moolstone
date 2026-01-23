@@ -71,7 +71,7 @@ export default function EcommerceServicesContent() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 }}
                         >
-                            <Link href="/contact">
+                            <Link href="/contact#contact-form">
                                 <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold border-none text-white">
                                     Get a Quote
                                 </Button>
@@ -138,14 +138,14 @@ export default function EcommerceServicesContent() {
                                 </div>
 
                                 <div className="pt-4 flex flex-wrap gap-10 items-center">
-                                    <Link href="/contact">
+                                    <Link href="/contact#contact-form">
                                         <Button variant="outline" className="rounded-full px-6 py-2 text-sm group bg-white border-2 border-primary/20 text-primary hover:border-primary hover:bg-primary hover:text-white transition-all">
                                             Explore {service.title}
                                             <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={14} />
                                         </Button>
                                     </Link>
 
-                                    <Link href="/contact">
+                                    <Link href="/contact#contact-form">
                                         <Button variant="outline" className="rounded-full px-6 py-2 text-sm group bg-white border-2 border-primary/20 text-primary hover:border-primary hover:bg-primary hover:text-white transition-all">
                                             Start Selling
                                             <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={14} />
@@ -193,7 +193,7 @@ export default function EcommerceServicesContent() {
                         From account setup to becoming a category leader, Moolstone guides your ecommerce journey.
                     </p>
                     <div className="flex justify-center gap-6">
-                        <Link href="/contact">
+                        <Link href="/contact#contact-form">
                             <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-12 py-6 text-xl font-bold shadow-xl shadow-primary/20">
                                 Contact Us Today
                             </Button>

@@ -127,7 +127,7 @@ export default function WebDevelopmentServicesPage() {
                             <ChevronRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
                           </Button>
                         </Link>
-                        <Link href="/contact" className="w-full sm:w-auto">
+                        <Link href="/contact#contact-form" className="w-full sm:w-auto">
                           <Button variant="outline" size="lg" className="w-full sm:w-auto rounded-full border-gray-200 hover:border-primary hover:bg-primary hover:text-white transition-all flex items-center justify-center">
                             Check Pricing
                           </Button>
