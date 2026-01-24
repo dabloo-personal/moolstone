@@ -7,7 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Moolstone | Building Digital Amazing Together",
+  title: "Moolstone | Web Dev, UI/UX, Ecommerce & Amazon SPN",
   description: "Moolstone empowers startups and global enterprises with cutting-edge digital transformation, AI-driven automation, and scalable e-commerce solutions.",
   keywords: ["Web Development", "AI Automation", "E-commerce", "SaaS", "Digital Transformation"],
   icons: {
