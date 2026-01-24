@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   title: "Moolstone | Building Digital Amazing Together",
   description: "Moolstone empowers startups and global enterprises with cutting-edge digital transformation, AI-driven automation, and scalable e-commerce solutions.",
   keywords: ["Web Development", "AI Automation", "E-commerce", "SaaS", "Digital Transformation"],
+  icons: {
+    icon: "/moolstone-logo.png",
+    shortcut: "/moolstone-logo.png",
+    apple: "/moolstone-logo.png",
+  },
 };
 
 export default function RootLayout({
