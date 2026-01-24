@@ -126,8 +126,8 @@ export default function AboutUsPage() {
           <h2 className="text-xl font-bold text-dark uppercase tracking-widest text-gray-400">Our Core Pillars</h2>
           <div className="grid grid-cols-3 gap-4">
             {[
-              { title: "Quality", icon: <Settings size={20} /> },
-              { title: "Design", icon: <Layout size={20} /> },
+              { title: "Integrity", icon: <Settings size={20} /> },
+              { title: "Innovation", icon: <Layout size={20} /> },
               { title: "Strategy", icon: <Target size={20} /> }
             ].map((item, i) => (
               <div key={i} className="space-y-2">
