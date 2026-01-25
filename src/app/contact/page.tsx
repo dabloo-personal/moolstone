@@ -47,14 +47,12 @@ export default function ContactPage() {
             transition={{ delay: 0.15 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4"
           >
-            <Link href="#contact-form">
-              <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark px-10 py-6 text-base font-bold shadow-xl shadow-primary/20">
-                Get Started
+
+            <Link href="/services">
+              <Button size="lg" className="rounded-full bg-primary hover:bg-primary-dark text-white px-10 py-6 text-base font-bold shadow-xl shadow-primary/20 flex items-center gap-2 group transition-all hover:-translate-y-1">
+                View Our Work
+                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
               </Button>
-            </Link>
-            <Link href="/services" className="flex items-center font-bold text-dark hover:text-primary transition-colors group text-sm">
-              View Our Work
-              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={16} />
             </Link>
           </motion.div>
         </div>

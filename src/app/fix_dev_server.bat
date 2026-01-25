@@ -1,0 +1,6 @@
+@echo off
+echo Stopping potential zombie processes on port 3000...
+call npx -y kill-port 3000
+cd ..\..
+echo Starting server from correct root directory...
+npm run dev

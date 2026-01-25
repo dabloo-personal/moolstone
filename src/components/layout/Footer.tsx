@@ -1,13 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
-import { Mail, Phone, MapPin, Linkedin, Twitter, Sparkles, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram, MessageCircle } from 'lucide-react';
 import Image from 'next/image';
 
 export const Footer = () => {
   return (
     <footer className="bg-dark text-white pt-8 pb-6 px-6 lg:px-12">
       <div className="max-w-screen-2xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-6">
           {/* Company Info */}
           <div className="space-y-3">
             <div className="flex items-center space-x-3">
@@ -44,6 +44,37 @@ export const Footer = () => {
             </ul>
           </div>
 
+          {/* Social Media */}
+          <div>
+            <h4 className="text-[9px] font-bold uppercase tracking-[0.2em] mb-3 text-gray-400">Social Media</h4>
+            <ul className="space-y-2 text-[11px] text-gray-500">
+              <li>
+                <a href="https://www.linkedin.com/in/mool-stone-1463333a8" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 hover:text-primary transition-colors">
+                  <Linkedin size={12} />
+                  <span>LinkedIn</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/moolstone_official?igsh=MTJuNXY1cjQxMDV0ag%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 hover:text-primary transition-colors">
+                  <Instagram size={12} />
+                  <span>Instagram</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.facebook.com/share/1C5QmhUdhv/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 hover:text-primary transition-colors">
+                  <Facebook size={12} />
+                  <span>Facebook</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://wa.me/919288138539" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 hover:text-primary transition-colors">
+                  <MessageCircle size={12} />
+                  <span>WhatsApp</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
           {/* Contact */}
           <div>
             <h4 className="text-[9px] font-bold uppercase tracking-[0.2em] mb-3 text-gray-400">Contact</h4>
@@ -62,7 +93,7 @@ export const Footer = () => {
               </li>
               <li className="flex items-center space-x-2 hover:text-primary transition-colors pt-1">
                 <Phone className="text-primary" size={12} />
-                <a href="tel:+917004085490">+91 7004085490</a>
+                <a href="tel:+919288138539">+91 9288138539</a>
               </li>
               <li className="flex items-center space-x-2 hover:text-primary transition-colors">
                 <Mail className="text-primary" size={12} />

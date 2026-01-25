@@ -104,11 +104,11 @@ export default function EcommerceServicesPage() {
                           {activeService.features.slice(0, 6).map((item, i) => {
                             const title = typeof item === 'string' ? item : item.title;
                             return (
-                              <li key={i} className="flex items-center space-x-2 group/item">
-                                <div className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 group-hover/item:bg-primary group-hover/item:text-white transition-colors">
+                              <li key={i} className="flex items-start space-x-2 group/item">
+                                <div className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 group-hover/item:bg-primary group-hover/item:text-white transition-colors mt-0.5">
                                   <CheckCircle2 size={10} strokeWidth={3} />
                                 </div>
-                                <span className="text-[11px] md:text-xs font-bold text-dark truncate">{title}</span>
+                                <span className="text-[11px] md:text-xs font-bold text-dark">{title}</span>
                               </li>
                             )
                           })}
@@ -164,7 +164,7 @@ export default function EcommerceServicesPage() {
           {[
             { value: "500+", label: "Global Brands" },
             { value: "40%", label: "ROAS Lift" },
-            { value: "10M+", label: "Units Sold" },
+            { value: "10K+", label: "Units Sold" },
             { value: "24/7", label: "Account Health" }
           ].map((stat, i) => (
             <div key={i} className="space-y-1">

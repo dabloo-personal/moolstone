@@ -128,11 +128,7 @@ export const Navbar = () => {
               )}
             </div>
           ))}
-          <Link href="/contact#contact-form" onClick={() => handleSamePageScroll('/contact')}>
-            <Button size="sm" className="rounded-full bg-primary hover:bg-primary-dark px-6">
-              Contact Us
-            </Button>
-          </Link>
+
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -191,15 +187,7 @@ export const Navbar = () => {
                   )}
                 </div>
               ))}
-              <Link
-                href="/contact#contact-form"
-                onClick={() => {
-                  setIsOpen(false);
-                  handleSamePageScroll('/contact');
-                }}
-              >
-                <Button className="w-full rounded-full">Contact Us</Button>
-              </Link>
+
             </div>
           </motion.div>
         )}
