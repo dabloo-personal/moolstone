@@ -40,7 +40,8 @@ const BrandAssembly: React.FC = () => {
 
     return (
         <div className="flex flex-col items-center justify-center pointer-events-none w-full">
-            <div className="flex justify-center items-center h-[120px] overflow-visible">
+            <h1 className="flex justify-center items-center h-[120px] overflow-visible relative m-0 p-0">
+                <span className="sr-only">Moolstone - Mool Digital Growth Foundation</span>
                 {letters.map((char, i) => {
                     const initial = getInitialProps(i);
                     const delay = getDelay(i);
@@ -75,7 +76,7 @@ const BrandAssembly: React.FC = () => {
                         </motion.span>
                     );
                 })}
-            </div>
+            </h1>
 
             <motion.p
                 initial={{ opacity: 0 }}
